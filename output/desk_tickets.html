@@ -316,34 +316,34 @@
     <p class="sub" style="margin-bottom:12px">Itemized from <code>data/campus_customs_new.db</code> (shop date 2026-08-31). Built by <code>scripts/cash_tab.py</code>; run it again after approvals.</p>
     <div class="facts">
       <div class="fact"><b>1 · Starting balance (after reset)</b><span>$3,400.00</span></div>
-      <div class="fact"><b>Paid out (0 payments)</b><span>$0.00</span></div>
-      <div class="fact"><b>3 · Ending balance (cash_accounts)</b><span>$3,400.00</span></div>
+      <div class="fact"><b>Paid out (2 payments)</b><span>-$3,240.00</span></div>
+      <div class="fact"><b>3 · Ending balance (cash_accounts)</b><span>$160.00</span></div>
       <div class="fact"><b>Check: start − payments = ending</b><span style="color:var(--ok-line)">✓ Matches</span></div>
     </div>
     <h3>2 · By ticket</h3>
     
       <div class="cash-ticket">
-        <h3>#101 · Bulldog tee <span class="cash-spent">$0.00</span></h3>
-        <p><strong>Status:</strong> Not resolved yet (needs approval)</p>
-        <ul><li>No money has moved for this ticket.</li></ul>
-        <p class="pending-h">Still waiting:</p><ul><li>Request #1 (invoice payment): $840.00 waiting for your approval</li></ul>
+        <h3>#101 · Bulldog tee <span class="cash-spent">-$840.00</span></h3>
+        <p><strong>Status:</strong> Not resolved yet (in progress)</p>
+        <ul><li><strong>Vendor invoice payment: $840.00</strong> on 2026-08-31, approved by Adrian (payment #1); balance after: $2,560.00.<br><span class='why'>Why: Invoice #501 is open and 3 days overdue; requesting human approval to pay Bulldog Print Co so vendor eligibility to ship can be restored. Ticket #101 is blocked pending invoice resolution. No purchase order requested; vendor shipping eligibility changes only after the invoice payment is approved and</span></li></ul>
+        
       </div>
       <div class="cash-ticket">
-        <h3>#102 · Rent due <span class="cash-spent">$0.00</span></h3>
-        <p><strong>Status:</strong> Not resolved yet (needs approval)</p>
-        <ul><li>No money has moved for this ticket.</li></ul>
-        <p class="pending-h">Still waiting:</p><ul><li>Request #2 (rent payment): $2,400.00 waiting for your approval</li></ul>
+        <h3>#102 · Rent due <span class="cash-spent">-$2,400.00</span></h3>
+        <p><strong>Status:</strong> Not resolved yet (in progress)</p>
+        <ul><li><strong>Rent payment: $2,400.00</strong> on 2026-08-31, approved by Adrian (payment #2); balance after: $160.00.<br><span class='why'>Why: Rent due 2026-09-02. Facilities verified lease 1 rent of $2,400 due 2026-09-02. Cash plan shows existing overdue invoice #501 for $840 and rent are both affordable, leaving $160 if both are approved. Requesting human approval only; nothing is paid until approved.</span></li></ul>
+        
       </div>
       <div class="cash-ticket">
         <h3>#103 · Bulk hoodie discount <span class="cash-spent">$0.00</span></h3>
-        <p><strong>Status:</strong> Not resolved yet (needs approval)</p>
+        <p><strong>Status:</strong> Not resolved yet (in progress)</p>
         <ul><li>No money has moved for this ticket.</li></ul>
-        <p class="pending-h">Still waiting:</p><ul><li>Request #3 (price override): 20 × CC-HOOD-NAVY M at $49.30 (a price, no cash) waiting for your approval</li></ul>
+        
       </div>
     <h3>Ledger (every payment, in order)</h3>
     <div class="wrap"><table class="tbl"><thead><tr><th>Payment</th><th>Paid</th><th>Ticket</th><th>What</th><th>Approved by</th><th>Amount</th><th>Balance</th></tr></thead>
-      <tbody><tr><td>—</td><td>reset</td><td>—</td><td>Starting balance</td><td>—</td><td class='num'></td><td class='num'>$3,400.00</td></tr>
-      <tr><td colspan="6"><strong>Ending balance (matches cash_accounts.checking: yes)</strong></td><td class='num'><strong>$3,400.00</strong></td></tr></tbody></table></div>
+      <tbody><tr><td>—</td><td>reset</td><td>—</td><td>Starting balance</td><td>—</td><td class='num'></td><td class='num'>$3,400.00</td></tr><tr><td>#1</td><td>2026-08-31</td><td>#101</td><td>Vendor invoice payment</td><td>Adrian</td><td class='num'>-$840.00</td><td class='num'>$2,560.00</td></tr><tr><td>#2</td><td>2026-08-31</td><td>#102</td><td>Rent payment</td><td>Adrian</td><td class='num'>-$2,400.00</td><td class='num'>$160.00</td></tr>
+      <tr><td colspan="6"><strong>Ending balance (matches cash_accounts.checking: yes)</strong></td><td class='num'><strong>$160.00</strong></td></tr></tbody></table></div>
     <p style="color:var(--muted);font-size:13px;margin-top:10px">Only a human's Approve moves cash (the agents only prepare requests). No money comes in (rule 6), and cash can't go below $0 (rule 5).</p>
   </section>
 

@@ -1232,3 +1232,19 @@ Wrote `scripts/cash_tab.py`, which reads the database (read-only) and fills the 
 **Assistant response:**
 
 Cash math is checked in code: `scripts/cash_tab.py` and `scripts/resolved_report.py` stop if start − payments ≠ `cash_accounts`. Wrote `scripts/resolved_report.py` (builds `output/resolved_tickets.json` and `output/resolved_board.html`; the tickets are still `needs_approval` because Adrian hasn't approved yet, and the headless screenshots still need fixing). Real runs already append to `output/audit_trail.json` (503+ entries, never wiped). Matched the required layout: renamed `mcp_server/mcp_server.py` to `mcp_server/server.py` (all references updated), added a root `requirements.txt`, and rewrote the README's run steps (clean copy, MCP server, back end, board, reset before a full run). Filled the Reflection tab in Adrian's voice with evidence from the ticket and Cash tabs: what we built (MCP tools, agents, routes and dashboard, safety) with 🛑 boxes, how we evaluated, expected vs. actual per ticket, what would be simpler as one tool, 3 problems we can solve, and 3 we can't yet, with the tools to build. Created the public repo and pushed: **https://github.com/AdrianPucci/hw5** (in `output/github_url.txt`); `.env` is excluded and both databases are included.
+
+### Prompt 126
+
+**User prompt:**
+
+approved
+
+**Assistant response:**
+
+The back end had stopped after the file rename and wouldn't start: one line in `backend/main.py` had been broken by an earlier edit, and that version had been pushed. Fixed it, checked every Python file parses, and pushed the fix. Then recorded Adrian's approval of the three pending requests through `POST /api/approvals/{id}/approve` (approved_by Adrian): #1 invoice #501 $840 (cash $3,400 → $2,560), #2 rent $2,400 (→ $160; the lease's next due date moves to Oct 2), #3 price for 20 M hoodies at $49.30. The Cash tab reconciles: $3,400 − $3,240 = $160 = `cash_accounts`. Started the follow-up runs.
+
+### Prompts 127–128
+
+**User prompts:** "we have 6 minutes to finish" · "url is posted"
+
+**Assistant response:** Pushed the fixes and the updated Cash tab to the posted URL, https://github.com/AdrianPucci/hw5.

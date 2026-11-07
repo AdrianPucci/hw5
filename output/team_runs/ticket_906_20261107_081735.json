@@ -1,0 +1,1277 @@
+{
+  "run_id": "cd4e4b9cd419",
+  "task": "ticket_906",
+  "ticket_id": 906,
+  "shop_date": "2026-08-31",
+  "started": "2026-11-07T08:17:35",
+  "seconds": 129.9,
+  "model": "gpt-6-luna (Portkey)",
+  "delegations": 3,
+  "model_requests": 26,
+  "error": null,
+  "final_report": {
+    "agent": "Boss",
+    "summary": "Ticket #906 is awaiting human approval for restocking one Crest Mug; the item is out of stock. Inventory verified a suitable supplier and Accounting created pending PO request #1, while Customer Service saved an unsent draft acknowledging the customer's frustration. My recommendation is to consider overdue invoice #501 first, then rent due 2026-09-02, before the undated mug PO; no customer delivery promise should be made until approval and receipt.",
+    "database_facts": [
+      "Shop date is 2026-08-31.",
+      "Ticket #906 requests one Crest Mug, SKU CC-MUG-CREST, size OS; on-hand and available stock are both 0, short by 1.",
+      "Elm City Gifts is a verified mugs/small-goods vendor with no open-invoice block and a 3-day lead; estimated arrival is 2026-09-03.",
+      "Pending purchase-order approval request #1 is for $3.50 for one Crest Mug; nothing has been paid or ordered.",
+      "Cash plan: balance $3,400; invoice #501 for $840 is overdue (2026-08-28), rent of $2,400 is due 2026-09-02, and the undated $3.50 PO leaves $156.50 if all listed items are paid.",
+      "Audit check passed: starting cash $3,400, payments $0, current balance $3,400; all listed checks pass."
+    ],
+    "actions_taken": [
+      "Assigned ticket #906 to Inventory for the stock shortfall.",
+      "Delegated stock verification to Inventory; they recorded blocker request #1 and flags for customer escalation and reorder.",
+      "Delegated customer communication to Customer Service; draft #1 was saved and not sent.",
+      "Recorded a Boss note and left ticket #906 in needs_approval pending human decision on PO request #1.",
+      "Ran audit_check; result ok=true."
+    ],
+    "approval_requests": [
+      1
+    ],
+    "needs_human_decision": [
+      "Decide whether to approve PO request #1 ($3.50) for one Crest Mug. Recommendation: prioritize overdue invoice #501 and rent due 2026-09-02 before this undated PO; the cash plan shows these obligations are affordable and $156.50 would remain if all listed items are paid.",
+      "Customer Service draft #1 is unsent; no delivery date or fulfillment should be promised until human approval and product receipt."
+    ]
+  },
+  "activity": [
+    {
+      "time": "2026-11-07T08:17:35",
+      "kind": "start",
+      "agent": "Boss",
+      "task": "Handle ticket #906. Start with ticket_brief, assign it, delegate the work to the right agents, and finish with one recommendation for the human."
+    },
+    {
+      "time": "2026-11-07T08:17:39",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 906,
+          "type": "customer_order",
+          "requester": "TEST - Taylor Kim",
+          "subject": "[TEST] Where is my mug?",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "open",
+          "notes": "This is the THIRD time I'm asking and nobody answers. I'm really frustrated. Where is my mug??",
+          "created_at": "2026-08-31T15:50:00-04:00",
+          "assigned_to": null,
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Crest Mug",
+          "qty": 0,
+          "location": "Aisle D",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 3.5,
+          "list_price": 14.0,
+          "lowest_allowed_price": 11.9
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T08:17:41",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "ticket": {
+          "id": 906,
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null
+        },
+        "events": []
+      }
+    },
+    {
+      "time": "2026-11-07T08:17:45",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T08:17:49",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "assign_ticket",
+      "args": {
+        "ticket_id": 906,
+        "agent": "Inventory",
+        "assigned_by": "Boss",
+        "note": "Assigning to Inventory because the requested Crest Mug is out of stock; verify replenishment options and blockers before any customer commitment."
+      },
+      "result": {
+        "ok": true,
+        "ticket_id": 906,
+        "assigned_to": "Inventory"
+      }
+    },
+    {
+      "time": "2026-11-07T08:17:52",
+      "kind": "delegate",
+      "agent": "Boss",
+      "to": "Inventory",
+      "task": "Handle ticket #906 stock side: inspect the Crest Mug shortfall, availability/reorder constraints and any linked blockers using ticket facts. Do not make customer promises or create duplicate requests. Report findings/actions and what remains for Customer Service.",
+      "chain": [
+        "Boss"
+      ]
+    },
+    {
+      "time": "2026-11-07T08:17:57",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T08:17:57",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 906,
+          "type": "customer_order",
+          "requester": "TEST - Taylor Kim",
+          "subject": "[TEST] Where is my mug?",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "in_progress",
+          "notes": "This is the THIRD time I'm asking and nobody answers. I'm really frustrated. Where is my mug??",
+          "created_at": "2026-08-31T15:50:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Crest Mug",
+          "qty": 0,
+          "location": "Aisle D",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 3.5,
+          "list_price": 14.0,
+          "lowest_allowed_price": 11.9
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T08:17:57",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "ticket": {
+          "id": 906,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T08:17:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Assigning to Inventory because the requested Crest Mug is out of stock; verify replenishment options and blockers before any customer commitment."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:02",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "list_purchase_orders",
+      "args": {
+        "status": "received"
+      },
+      "result": []
+    },
+    {
+      "time": "2026-11-07T08:18:02",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "check_stock",
+      "args": {
+        "sku": "CC-MUG-CREST",
+        "size": "OS"
+      },
+      "result": [
+        {
+          "sku": "CC-MUG-CREST",
+          "name": "Crest Mug",
+          "size": "OS",
+          "qty": 0,
+          "location": "Aisle D",
+          "list_price": 14.0,
+          "held": 0,
+          "available": 0
+        }
+      ]
+    },
+    {
+      "time": "2026-11-07T08:18:02",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "blockers",
+      "args": {},
+      "result": []
+    },
+    {
+      "time": "2026-11-07T08:18:02",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "restock_options",
+      "args": {
+        "sku": "CC-MUG-CREST",
+        "size": "OS",
+        "qty": 1
+      },
+      "result": {
+        "sku": "CC-MUG-CREST",
+        "size": "OS",
+        "name": "Crest Mug",
+        "on_hand": 0,
+        "qty": 1,
+        "unit_cost": 3.5,
+        "total_cost": 3.5,
+        "vendors": [
+          {
+            "vendor_id": 3,
+            "vendor": "QuickShip CT",
+            "specialty": "local courier",
+            "lead_days": 1,
+            "expected_on": "2026-09-01",
+            "can_ship": true,
+            "blocked_by_open_invoices": []
+          },
+          {
+            "vendor_id": 2,
+            "vendor": "Elm City Gifts",
+            "specialty": "mugs and small goods",
+            "lead_days": 3,
+            "expected_on": "2026-09-03",
+            "can_ship": true,
+            "blocked_by_open_invoices": []
+          },
+          {
+            "vendor_id": 1,
+            "vendor": "Bulldog Print Co",
+            "specialty": "apparel reprint",
+            "lead_days": 5,
+            "expected_on": "2026-09-05",
+            "can_ship": false,
+            "blocked_by_open_invoices": [
+              {
+                "id": 501,
+                "amount": 840.0,
+                "due_date": "2026-08-28",
+                "description": "Rush reprint CC-TEE-WHITE S"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:12",
+      "kind": "delegate",
+      "agent": "Inventory",
+      "to": "Accounting",
+      "task": "For ticket #906, prepare the purchase order approval request for the Crest Mug shortfall only: vendor_id 2, Elm City Gifts (mugs and small goods), SKU CC-MUG-CREST, size OS, quantity 1, unit cost $3.50 / total $3.50. Stock is 0 and short by 1; vendor can ship with 3-day lead, expected 2026-09-03. Do not duplicate any existing request; ticket brief showed no approval requests and timeline showed none. Report the request number or blocker.",
+      "chain": [
+        "Boss",
+        "Inventory"
+      ]
+    },
+    {
+      "time": "2026-11-07T08:18:15",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:15",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 906,
+          "type": "customer_order",
+          "requester": "TEST - Taylor Kim",
+          "subject": "[TEST] Where is my mug?",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "in_progress",
+          "notes": "This is the THIRD time I'm asking and nobody answers. I'm really frustrated. Where is my mug??",
+          "created_at": "2026-08-31T15:50:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Crest Mug",
+          "qty": 0,
+          "location": "Aisle D",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 3.5,
+          "list_price": 14.0,
+          "lowest_allowed_price": 11.9
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:15",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "ticket": {
+          "id": 906,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T08:17:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Assigning to Inventory because the requested Crest Mug is out of stock; verify replenishment options and blockers before any customer commitment."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:17",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_cash_balance",
+      "args": {},
+      "result": {
+        "account": "checking",
+        "balance": 3400.0,
+        "as_of": "2026-08-31",
+        "pending_requests_total": 0,
+        "balance_if_all_pending_approved": 3400.0
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:17",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "list_vendors",
+      "args": {},
+      "result": [
+        {
+          "id": 1,
+          "name": "Bulldog Print Co",
+          "specialty": "apparel reprint",
+          "lead_days": 5,
+          "can_ship": false,
+          "open_invoices": [
+            {
+              "id": 501,
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "description": "Rush reprint CC-TEE-WHITE S"
+            }
+          ],
+          "earliest_arrival": "2026-09-05"
+        },
+        {
+          "id": 2,
+          "name": "Elm City Gifts",
+          "specialty": "mugs and small goods",
+          "lead_days": 3,
+          "can_ship": true,
+          "open_invoices": [],
+          "earliest_arrival": "2026-09-03"
+        },
+        {
+          "id": 3,
+          "name": "QuickShip CT",
+          "specialty": "local courier",
+          "lead_days": 1,
+          "can_ship": true,
+          "open_invoices": [],
+          "earliest_arrival": "2026-09-01"
+        }
+      ]
+    },
+    {
+      "time": "2026-11-07T08:18:17",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "cash_plan",
+      "args": {},
+      "result": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3240.0,
+        "cash_left_if_all_paid": 160.0,
+        "short_by": 0,
+        "earmarked_for_rent": 0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "earmarked": false,
+            "cash_left_after": 160.0,
+            "affordable": true
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:21",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "request_purchase_order",
+      "args": {
+        "vendor_id": 2,
+        "sku": "CC-MUG-CREST",
+        "size": "OS",
+        "qty": 1,
+        "requested_by": "Accounting",
+        "reason": "Ticket #906 has a one-unit Crest Mug shortfall. Elm City Gifts is the verified mugs/small-goods vendor, can ship, and has no open invoice. Unit cost is $3.50; request is for $3.50 total, pending human approval.",
+        "ticket_id": 906
+      },
+      "result": {
+        "ok": true,
+        "request_id": 1,
+        "status": "pending",
+        "message": "Waiting for human approval on the dashboard. Nothing has been paid or changed yet.",
+        "amount": 3.5,
+        "cash_balance": 3400.0,
+        "cash_after_all_pending_requests": 3396.5
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:24",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 906,
+        "author": "Accounting",
+        "note": "Submitted purchase order approval request #1 for 1 Crest Mug (CC-MUG-CREST, OS) from Elm City Gifts at $3.50 total. Vendor data confirms it can ship, has no open invoice, and has a 3-day lead (earliest arrival 2026-09-03). Request is pending human approval; nothing has been paid or ordered."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:27",
+      "kind": "report",
+      "agent": "Accounting",
+      "to": "Inventory",
+      "report": {
+        "agent": "Accounting",
+        "summary": "Created purchase order approval request #1 for the one-unit Crest Mug shortfall on ticket #906. It is pending human approval; no payment or order has been completed.",
+        "database_facts": [
+          "Ticket #906 needs 1 CC-MUG-CREST, size OS; database stock is 0 with short_by 1.",
+          "Elm City Gifts (vendor 2) is listed for mugs and small goods, can ship, has no open invoices, and has a 3-day lead with earliest arrival 2026-09-03.",
+          "Database unit cost is $3.50; request total is $3.50.",
+          "Cash balance is $3,400.00; cash after all pending requests is $3,396.50."
+        ],
+        "actions_taken": [
+          "Created purchase order approval request #1 for vendor 2, SKU CC-MUG-CREST, OS, quantity 1, total $3.50.",
+          "Added an Accounting note to ticket #906 recording the request and pending approval."
+        ],
+        "approval_requests": [
+          1
+        ],
+        "needs_human_decision": [
+          "Human approval is required before this simulated purchase order proceeds."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:35",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 906,
+        "author": "Inventory",
+        "note": "Inventory check: Crest Mug CC-MUG-CREST, OS has 0 on hand / 0 available; ticket needs 1, short by 1. No received PO was listed, so no stock can be held now. Best-fit restock is Elm City Gifts (vendor 2, mugs and small goods), available with no open-invoice block; 3-day lead, expected 2026-09-03, total cost $3.50. Accounting created pending PO approval request #1; fulfillment remains dependent on human approval and receipt. QuickShip is a courier, not the suitable supplier; Bulldog Print Co is apparel specialty and is blocked by open invoice #501. Customer Service: handle the frustrated customer's response; do not promise fulfillment or delivery. Recheck stock and hold 1 unit for this ticket only after receipt."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:35",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "set_blocker",
+      "args": {
+        "ticket_id": 906,
+        "blocker_type": "request",
+        "reason": "Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received.",
+        "author": "Inventory",
+        "blocker_ref": "1"
+      },
+      "result": {
+        "ok": true,
+        "blocker_id": 1
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:35",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "flag_for_human",
+      "args": {
+        "author": "Inventory",
+        "category": "customer_escalation",
+        "message": "Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises.",
+        "ticket_id": 906
+      },
+      "result": {
+        "ok": true,
+        "inbox_id": 1,
+        "status": "open"
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:35",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "flag_for_human",
+      "args": {
+        "author": "Inventory",
+        "category": "reorder",
+        "message": "Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending.",
+        "ticket_id": 906
+      },
+      "result": {
+        "ok": true,
+        "inbox_id": 2,
+        "status": "open"
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:40",
+      "kind": "report",
+      "agent": "Inventory",
+      "to": "Boss",
+      "report": {
+        "agent": "Inventory",
+        "summary": "Ticket #906 needs one Crest Mug (CC-MUG-CREST, OS), but none is on hand or available, so nothing could be held. Elm City Gifts is the suitable restock source; Accounting created pending purchase-order approval request #1, and the ticket is blocked pending approval and receipt. Customer Service still needs to respond to the frustrated customer without making unsupported promises.",
+        "database_facts": [
+          "Shop date is 2026-08-31.",
+          "Ticket #906 requests 1 Crest Mug, SKU CC-MUG-CREST, size OS; on hand 0, held 0, available 0, short by 1.",
+          "No received purchase orders were listed.",
+          "Elm City Gifts (vendor 2), specialty mugs and small goods, can ship with no open-invoice block; lead time 3 days, expected 2026-09-03.",
+          "Restock cost is $3.50 per unit and $3.50 total for quantity 1.",
+          "QuickShip CT is a local courier, not the appropriate supplier. Bulldog Print Co is an apparel vendor, not the appropriate supplier, and is blocked by open invoice #501.",
+          "Accounting created PO approval request #1 for the one-unit shortfall; it is pending human approval.",
+          "The ticket notes that the customer has asked repeatedly and is frustrated."
+        ],
+        "actions_taken": [
+          "Added an Inventory note documenting stock, sourcing, approval dependency, and Customer Service handoff.",
+          "Recorded blocker request #1 on ticket #906.",
+          "Flagged the one-unit restock need for human review (inbox item #2).",
+          "Flagged the customer's frustration for human review (inbox item #1).",
+          "Delegated to Accounting, which created approval request #1; no units were held because none are available."
+        ],
+        "approval_requests": [
+          1
+        ],
+        "needs_human_decision": [
+          "Human approval is required for PO request #1 before the restock proceeds.",
+          "Customer Service should respond to the customer; the shop cannot promise fulfillment or delivery based on current stock. After receipt, recheck stock and hold one unit for ticket #906."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 906,
+          "type": "customer_order",
+          "requester": "TEST - Taylor Kim",
+          "subject": "[TEST] Where is my mug?",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "needs_approval",
+          "notes": "This is the THIRD time I'm asking and nobody answers. I'm really frustrated. Where is my mug??",
+          "created_at": "2026-08-31T15:50:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Crest Mug",
+          "qty": 0,
+          "location": "Aisle D",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 3.5,
+          "list_price": 14.0,
+          "lowest_allowed_price": 11.9
+        },
+        "approval_requests": [
+          {
+            "id": 1,
+            "kind": "purchase_order",
+            "amount": 3.5,
+            "status": "pending",
+            "requested_by": "Accounting",
+            "decided_by": null
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:18:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "ticket": {
+          "id": 906,
+          "status": "needs_approval",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T08:17:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Assigning to Inventory because the requested Crest Mug is out of stock; verify replenishment options and blockers before any customer commitment."
+          },
+          {
+            "at": "2026-08-31T08:18:21",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Requested human approval #1 (purchase_order, $3.50): 1 x CC-MUG-CREST OS from Elm City Gifts (3-day lead). Ticket #906 has a one-unit Crest Mug shortfall. Elm City Gifts is the verified mugs/small-goods vendor, can ship, and has no open invoice. Unit cost is $3.50; request is for $3.50 total, pending human approval."
+          },
+          {
+            "at": "2026-08-31T08:18:21",
+            "what": "approval request #1 (purchase_order)",
+            "by": "Accounting",
+            "detail": "$3.50, status pending"
+          },
+          {
+            "at": "2026-08-31T08:18:24",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Submitted purchase order approval request #1 for 1 Crest Mug (CC-MUG-CREST, OS) from Elm City Gifts at $3.50 total. Vendor data confirms it can ship, has no open invoice, and has a 3-day lead (earliest arrival 2026-09-03). Request is pending human approval; nothing has been paid or ordered."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Inventory check: Crest Mug CC-MUG-CREST, OS has 0 on hand / 0 available; ticket needs 1, short by 1. No received PO was listed, so no stock can be held now. Best-fit restock is Elm City Gifts (vendor 2, mugs and small goods), available with no open-invoice block; 3-day lead, expected 2026-09-03, total cost $3.50. Accounting created pending PO approval request #1; fulfillment remains dependent on human approval and receipt. QuickShip is a courier, not the suitable supplier; Bulldog Print Co is apparel specialty and is blocked by open invoice #501. Customer Service: handle the frustrated customer's response; do not promise fulfillment or delivery. Recheck stock and hold 1 unit for this ticket only after receipt."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by request 1: Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, customer_escalation): Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #2, reorder): Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "blocker #1 (request 1)",
+            "by": "Inventory",
+            "detail": "Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received. (open)"
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "inbox #1 (customer_escalation)",
+            "by": "Inventory",
+            "detail": "Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "inbox #2 (reorder)",
+            "by": "Inventory",
+            "detail": "Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:07",
+      "kind": "delegate",
+      "agent": "Boss",
+      "to": "Customer Service",
+      "task": "Handle customer-communication portion of ticket #906. Review existing timeline and inventory findings, then prepare an appropriate customer message draft acknowledging frustration and stating only verified facts; do not promise delivery or contact customer. Report draft/action and remaining human decision.",
+      "chain": [
+        "Boss"
+      ]
+    },
+    {
+      "time": "2026-11-07T08:19:10",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 906,
+          "type": "customer_order",
+          "requester": "TEST - Taylor Kim",
+          "subject": "[TEST] Where is my mug?",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "needs_approval",
+          "notes": "This is the THIRD time I'm asking and nobody answers. I'm really frustrated. Where is my mug??",
+          "created_at": "2026-08-31T15:50:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Crest Mug",
+          "qty": 0,
+          "location": "Aisle D",
+          "sku": "CC-MUG-CREST",
+          "size": "OS",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 3.5,
+          "list_price": 14.0,
+          "lowest_allowed_price": 11.9
+        },
+        "approval_requests": [
+          {
+            "id": 1,
+            "kind": "purchase_order",
+            "amount": 3.5,
+            "status": "pending",
+            "requested_by": "Accounting",
+            "decided_by": null
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:14",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "ticket": {
+          "id": 906,
+          "status": "needs_approval",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T08:17:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Assigning to Inventory because the requested Crest Mug is out of stock; verify replenishment options and blockers before any customer commitment."
+          },
+          {
+            "at": "2026-08-31T08:18:21",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Requested human approval #1 (purchase_order, $3.50): 1 x CC-MUG-CREST OS from Elm City Gifts (3-day lead). Ticket #906 has a one-unit Crest Mug shortfall. Elm City Gifts is the verified mugs/small-goods vendor, can ship, and has no open invoice. Unit cost is $3.50; request is for $3.50 total, pending human approval."
+          },
+          {
+            "at": "2026-08-31T08:18:21",
+            "what": "approval request #1 (purchase_order)",
+            "by": "Accounting",
+            "detail": "$3.50, status pending"
+          },
+          {
+            "at": "2026-08-31T08:18:24",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Submitted purchase order approval request #1 for 1 Crest Mug (CC-MUG-CREST, OS) from Elm City Gifts at $3.50 total. Vendor data confirms it can ship, has no open invoice, and has a 3-day lead (earliest arrival 2026-09-03). Request is pending human approval; nothing has been paid or ordered."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Inventory check: Crest Mug CC-MUG-CREST, OS has 0 on hand / 0 available; ticket needs 1, short by 1. No received PO was listed, so no stock can be held now. Best-fit restock is Elm City Gifts (vendor 2, mugs and small goods), available with no open-invoice block; 3-day lead, expected 2026-09-03, total cost $3.50. Accounting created pending PO approval request #1; fulfillment remains dependent on human approval and receipt. QuickShip is a courier, not the suitable supplier; Bulldog Print Co is apparel specialty and is blocked by open invoice #501. Customer Service: handle the frustrated customer's response; do not promise fulfillment or delivery. Recheck stock and hold 1 unit for this ticket only after receipt."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by request 1: Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, customer_escalation): Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #2, reorder): Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "blocker #1 (request 1)",
+            "by": "Inventory",
+            "detail": "Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received. (open)"
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "inbox #1 (customer_escalation)",
+            "by": "Inventory",
+            "detail": "Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "inbox #2 (reorder)",
+            "by": "Inventory",
+            "detail": "Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:17",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "customer_history",
+      "args": {
+        "requester": "TEST - Taylor Kim"
+      },
+      "result": {
+        "requester": "TEST - Taylor Kim",
+        "tickets": [
+          {
+            "id": 904,
+            "type": "customer_order",
+            "subject": "[TEST] Where is my mug?",
+            "status": "open",
+            "created_at": "2026-08-31T09:40:00-04:00"
+          },
+          {
+            "id": 905,
+            "type": "customer_order",
+            "subject": "[TEST] Where is my mug?",
+            "status": "open",
+            "created_at": "2026-08-31T11:45:00-04:00"
+          },
+          {
+            "id": 906,
+            "type": "customer_order",
+            "subject": "[TEST] Where is my mug?",
+            "status": "needs_approval",
+            "created_at": "2026-08-31T15:50:00-04:00"
+          }
+        ],
+        "times_asked_by_subject": {
+          "[TEST] Where is my mug?": 3
+        }
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:20",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 905
+      },
+      "result": {
+        "ticket": {
+          "id": 905,
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null
+        },
+        "events": []
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:20",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 904
+      },
+      "result": {
+        "ticket": {
+          "id": 904,
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null
+        },
+        "events": []
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:25",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "save_draft",
+      "args": {
+        "ticket_id": 906,
+        "author": "Customer Service",
+        "recipient": "TEST - Taylor Kim",
+        "subject": "Re: [TEST] Where is my mug?",
+        "body": "Hi Taylor,\n\nI\u2019m sorry you\u2019ve had to ask more than once, and I understand how frustrating that is. We checked: the Crest Mug is currently out of stock (0 available). A request to restock one mug is awaiting manager approval, so we can\u2019t confirm fulfillment or a delivery date yet.\n\nFor help with this issue, please send your message to campus-customs-support@example.com. Since this is your third message about the same question without an answer, you can also reach out to campus-customer-service@example.com.\n\nCampus Customs"
+      },
+      "result": {
+        "ok": true,
+        "draft_id": 1,
+        "status": "draft",
+        "sent": false
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:30",
+      "kind": "report",
+      "agent": "Customer Service",
+      "to": "Boss",
+      "report": {
+        "agent": "Customer Service",
+        "summary": "Reviewed the ticket timeline and customer history, then saved a customer-facing draft that acknowledges Taylor\u2019s frustration and shares only verified inventory and approval status. The draft was not sent; the existing customer-escalation flag remains in the human inbox.",
+        "database_facts": [
+          "Ticket #906 requests one Crest Mug (CC-MUG-CREST, OS); stock is 0 on hand and 0 available, short by 1.",
+          "Purchase-order approval request #1 for one mug is pending human approval; fulfillment and delivery timing are not confirmed.",
+          "Customer history shows three tickets with the same subject, and the prior ticket timelines have no recorded response."
+        ],
+        "actions_taken": [
+          "Saved draft #1 to TEST - Taylor Kim with an apology, verified stock/approval status, and the support and customer-service placeholder addresses; it was not sent.",
+          "No duplicate escalation flag created; the timeline shows an existing customer_escalation inbox flag for this ticket."
+        ],
+        "approval_requests": [],
+        "needs_human_decision": [
+          "Decide pending purchase-order approval request #1; the customer must not be promised fulfillment or a delivery date before approval and receipt."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:33",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 906
+      },
+      "result": {
+        "ticket": {
+          "id": 906,
+          "status": "needs_approval",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T08:17:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Assigning to Inventory because the requested Crest Mug is out of stock; verify replenishment options and blockers before any customer commitment."
+          },
+          {
+            "at": "2026-08-31T08:18:21",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Requested human approval #1 (purchase_order, $3.50): 1 x CC-MUG-CREST OS from Elm City Gifts (3-day lead). Ticket #906 has a one-unit Crest Mug shortfall. Elm City Gifts is the verified mugs/small-goods vendor, can ship, and has no open invoice. Unit cost is $3.50; request is for $3.50 total, pending human approval."
+          },
+          {
+            "at": "2026-08-31T08:18:21",
+            "what": "approval request #1 (purchase_order)",
+            "by": "Accounting",
+            "detail": "$3.50, status pending"
+          },
+          {
+            "at": "2026-08-31T08:18:24",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Submitted purchase order approval request #1 for 1 Crest Mug (CC-MUG-CREST, OS) from Elm City Gifts at $3.50 total. Vendor data confirms it can ship, has no open invoice, and has a 3-day lead (earliest arrival 2026-09-03). Request is pending human approval; nothing has been paid or ordered."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Inventory check: Crest Mug CC-MUG-CREST, OS has 0 on hand / 0 available; ticket needs 1, short by 1. No received PO was listed, so no stock can be held now. Best-fit restock is Elm City Gifts (vendor 2, mugs and small goods), available with no open-invoice block; 3-day lead, expected 2026-09-03, total cost $3.50. Accounting created pending PO approval request #1; fulfillment remains dependent on human approval and receipt. QuickShip is a courier, not the suitable supplier; Bulldog Print Co is apparel specialty and is blocked by open invoice #501. Customer Service: handle the frustrated customer's response; do not promise fulfillment or delivery. Recheck stock and hold 1 unit for this ticket only after receipt."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by request 1: Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, customer_escalation): Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #2, reorder): Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "blocker #1 (request 1)",
+            "by": "Inventory",
+            "detail": "Pending human approval of purchase order request #1 for one Crest Mug; no stock is available until stock is replenished and received. (open)"
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "inbox #1 (customer_escalation)",
+            "by": "Inventory",
+            "detail": "Ticket #906 customer says this is the third time asking and is very frustrated about the Crest Mug. Inventory is 0; the one-unit restock PO request #1 is pending human approval. Customer Service should respond without making unsupported fulfillment promises."
+          },
+          {
+            "at": "2026-08-31T08:18:35",
+            "what": "inbox #2 (reorder)",
+            "by": "Inventory",
+            "detail": "Crest Mug CC-MUG-CREST, size OS: on hand 0, available 0; ticket #906 needs 1 (short by 1). Best-fit restock source is Elm City Gifts (vendor 2), mugs and small goods; can ship, no open invoice, 3-day lead, expected 2026-09-03, total cost $3.50. PO approval request #1 is pending."
+          },
+          {
+            "at": "2026-08-31T08:19:25",
+            "what": "note",
+            "by": "Customer Service",
+            "detail": "Saved draft #1 to TEST - Taylor Kim: Re: [TEST] Where is my mug?"
+          },
+          {
+            "at": "2026-08-31T08:19:25",
+            "what": "draft #1",
+            "by": "Customer Service",
+            "detail": "to TEST - Taylor Kim: Re: [TEST] Where is my mug? (draft)"
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:33",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "audit_check",
+      "args": {},
+      "result": {
+        "ok": true,
+        "starting_cash": 3400.0,
+        "payments_total": 0,
+        "cash_balance": 3400.0,
+        "checks": [
+          {
+            "check": "Cash adds up",
+            "ok": true,
+            "detail": "Starting $3,400.00 - payments $0.00 = $3,400.00; balance is $3,400.00."
+          },
+          {
+            "check": "No negative balance",
+            "ok": true,
+            "detail": "Balance is $3,400.00."
+          },
+          {
+            "check": "Every payment approved by a human",
+            "ok": true,
+            "detail": "All payments name a human approver."
+          },
+          {
+            "check": "Every payment has an approved request",
+            "ok": true,
+            "detail": "Each payment matches an approved request."
+          },
+          {
+            "check": "Every paid invoice has a payment",
+            "ok": true,
+            "detail": "Each paid invoice has a payment row."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:33",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "cash_plan",
+      "args": {},
+      "result": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3243.5,
+        "cash_left_if_all_paid": 156.5,
+        "short_by": 0,
+        "earmarked_for_rent": 0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "earmarked": false,
+            "cash_left_after": 160.0,
+            "affordable": true
+          },
+          {
+            "item": "Purchase order request: 1 x CC-MUG-CREST OS",
+            "due": null,
+            "amount": 3.5,
+            "overdue": false,
+            "approval_request": 1,
+            "cash_left_after": 156.5,
+            "affordable": true
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T08:19:38",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "update_ticket_status",
+      "args": {
+        "ticket_id": 906,
+        "status": "needs_approval",
+        "author": "Boss",
+        "note": "Human decision pending on PO approval request #1 ($3.50) for one Crest Mug from Elm City Gifts. Recommendation: consider the overdue invoice #501 ($840, due 2026-08-28) first, then rent ($2,400 due 2026-09-02), before this undated PO; cash plan shows $3,400 cash and $156.50 remaining if all listed obligations are paid. Stock is 0, so no fulfillment promise; Customer Service saved unsent draft #1 acknowledging the customer and verified status. If the PO is approved, fulfillment still depends on receipt (vendor lead 3 days, estimated 2026-09-03)."
+      },
+      "result": {
+        "ok": true,
+        "ticket_id": 906,
+        "status": "needs_approval"
+      }
+    }
+  ]
+}

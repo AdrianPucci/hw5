@@ -1,0 +1,1374 @@
+{
+  "problem_4_vibe_coder_test": {
+    "what": "Problem 4: the vibe coder (Claude Code, session running in the HMW 5 folder) loaded the campus-customs server from .mcp.json and called each tool itself",
+    "run_at": "2026-11-06T21:12:58",
+    "connection": {
+      "config_file": ".mcp.json",
+      "server": "campus-customs",
+      "loaded_by": "Claude Code (project MCP servers)",
+      "tools_available_to_vibe_coder": 28
+    },
+    "summary": {
+      "calls": 5,
+      "passed": 5,
+      "values_compared": 37,
+      "all_passed": true
+    },
+    "calls": [
+      {
+        "1_prompt_asked_to_vibe_coder": "With the vibe coder connected. Test each of the 3 MCP tools. Save the evidence in the output/mcp_smoke.json  I think you already did this.  for ever tool include: 1 the prompt I asked the vibe coder, 2. the tool name, 3. the tool output (must match values in data/campus_customs_new.db",
+        "2_tool_name": "ticket_brief",
+        "3_tool_output": {
+          "today": "2026-08-31",
+          "ticket": {
+            "id": 101,
+            "type": "customer_order",
+            "requester": "Tauhid Zaman",
+            "subject": "Bulldog tee",
+            "sku": "CC-TEE-WHITE",
+            "size": "S",
+            "qty": 1,
+            "lease_id": null,
+            "invoice_id": 501,
+            "status": "open",
+            "notes": "Needs a tee in size S.",
+            "created_at": "2026-08-31T09:15:00-04:00",
+            "assigned_to": null
+          },
+          "stock": {
+            "name": "Classic Bulldog Tee",
+            "qty": 0,
+            "location": "Aisle B",
+            "sku": "CC-TEE-WHITE",
+            "size": "S",
+            "on_hand": 0,
+            "wanted": 1,
+            "short_by": 1
+          },
+          "pricing": {
+            "unit_cost": 8,
+            "list_price": 28,
+            "lowest_allowed_price": 23.8
+          },
+          "invoice": {
+            "id": 501,
+            "vendor_id": 1,
+            "amount": 840,
+            "due_date": "2026-08-28",
+            "status": "open",
+            "description": "Rush reprint CC-TEE-WHITE S",
+            "vendor": "Bulldog Print Co",
+            "lead_days": 5,
+            "overdue": true,
+            "days_overdue": 3
+          },
+          "vendor_can_ship": false,
+          "approval_requests": []
+        },
+        "tool_called_as": "mcp__campus-customs__ticket_brief",
+        "arguments": {
+          "ticket_id": 101
+        },
+        "matches_campus_customs_new_db": true,
+        "value_by_value": {
+          "today = desk.date_today": {
+            "tool": "2026-08-31",
+            "database": "2026-08-31",
+            "match": true
+          },
+          "ticket row = tickets row": {
+            "tool": {
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00",
+              "assigned_to": null
+            },
+            "database": {
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00",
+              "assigned_to": null
+            },
+            "match": true
+          },
+          "on_hand = inventory.qty": {
+            "tool": 0,
+            "database": 0,
+            "match": true
+          },
+          "wanted = tickets.qty": {
+            "tool": 1,
+            "database": 1,
+            "match": true
+          },
+          "short_by = tickets.qty - inventory.qty": {
+            "tool": 1,
+            "database": 1,
+            "match": true
+          },
+          "unit_cost = pricing.unit_cost": {
+            "tool": 8,
+            "database": 8.0,
+            "match": true
+          },
+          "list_price = pricing.list_price": {
+            "tool": 28,
+            "database": 28.0,
+            "match": true
+          },
+          "15% floor = pricing.list_price x 0.85": {
+            "tool": 23.8,
+            "database": 23.8,
+            "match": true
+          },
+          "invoice amount = invoices.amount": {
+            "tool": 840,
+            "database": 840.0,
+            "match": true
+          },
+          "invoice due = invoices.due_date": {
+            "tool": "2026-08-28",
+            "database": "2026-08-28",
+            "match": true
+          },
+          "invoice status = invoices.status": {
+            "tool": "open",
+            "database": "open",
+            "match": true
+          },
+          "days overdue = desk.date_today - invoices.due_date": {
+            "tool": 3,
+            "database": 3,
+            "match": true
+          },
+          "vendor = vendors.name": {
+            "tool": "Bulldog Print Co",
+            "database": "Bulldog Print Co",
+            "match": true
+          },
+          "vendor_can_ship = vendor has no open invoice": {
+            "tool": false,
+            "database": false,
+            "match": true
+          }
+        },
+        "database_values": {
+          "today": "2026-08-31",
+          "ticket": {
+            "id": 101,
+            "type": "customer_order",
+            "requester": "Tauhid Zaman",
+            "subject": "Bulldog tee",
+            "sku": "CC-TEE-WHITE",
+            "size": "S",
+            "qty": 1,
+            "lease_id": null,
+            "invoice_id": 501,
+            "status": "open",
+            "notes": "Needs a tee in size S.",
+            "created_at": "2026-08-31T09:15:00-04:00",
+            "assigned_to": null
+          },
+          "inventory": {
+            "sku": "CC-TEE-WHITE",
+            "name": "Classic Bulldog Tee",
+            "size": "S",
+            "qty": 0,
+            "location": "Aisle B"
+          },
+          "pricing": {
+            "sku": "CC-TEE-WHITE",
+            "unit_cost": 8.0,
+            "list_price": 28.0
+          },
+          "invoice": {
+            "id": 501,
+            "vendor_id": 1,
+            "amount": 840.0,
+            "due_date": "2026-08-28",
+            "status": "open",
+            "description": "Rush reprint CC-TEE-WHITE S"
+          },
+          "vendor": {
+            "id": 1,
+            "name": "Bulldog Print Co",
+            "specialty": "apparel reprint",
+            "lead_days": 5
+          }
+        },
+        "earlier_prompts_for_problem_4": [
+          "Ok Problem 4 is to add the MCP server to the Vibe coder and test each tool. Can you do that? Same the connection JSON text in .mpc.json as the project root or however the vibe coder saves local MCP server lists)",
+          "label this as probelm 4",
+          "Go, test the tools"
+        ]
+      },
+      {
+        "1_prompt_asked_to_vibe_coder": "With the vibe coder connected. Test each of the 3 MCP tools. Save the evidence in the output/mcp_smoke.json  I think you already did this.  for ever tool include: 1 the prompt I asked the vibe coder, 2. the tool name, 3. the tool output (must match values in data/campus_customs_new.db",
+        "2_tool_name": "ticket_brief",
+        "3_tool_output": {
+          "today": "2026-08-31",
+          "ticket": {
+            "id": 102,
+            "type": "rent_notice",
+            "requester": "Elm City Properties",
+            "subject": "Rent due",
+            "sku": null,
+            "size": null,
+            "qty": null,
+            "lease_id": 1,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Email: shop rent due in 2 days.",
+            "created_at": "2026-08-31T11:05:00-04:00",
+            "assigned_to": null
+          },
+          "lease": {
+            "id": 1,
+            "space_name": "Chapel Street shop",
+            "landlord": "Elm City Properties",
+            "monthly_rent": 2400,
+            "next_due": "2026-09-02",
+            "notes": null,
+            "days_until_due": 2,
+            "overdue": false,
+            "requester_matches_landlord": true
+          },
+          "approval_requests": []
+        },
+        "tool_called_as": "mcp__campus-customs__ticket_brief",
+        "arguments": {
+          "ticket_id": 102
+        },
+        "matches_campus_customs_new_db": true,
+        "value_by_value": {
+          "today = desk.date_today": {
+            "tool": "2026-08-31",
+            "database": "2026-08-31",
+            "match": true
+          },
+          "ticket row = tickets row": {
+            "tool": {
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00",
+              "assigned_to": null
+            },
+            "database": {
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00",
+              "assigned_to": null
+            },
+            "match": true
+          },
+          "rent = leases.monthly_rent": {
+            "tool": 2400,
+            "database": 2400.0,
+            "match": true
+          },
+          "next due = leases.next_due": {
+            "tool": "2026-09-02",
+            "database": "2026-09-02",
+            "match": true
+          },
+          "landlord = leases.landlord": {
+            "tool": "Elm City Properties",
+            "database": "Elm City Properties",
+            "match": true
+          },
+          "days until due = leases.next_due - desk.date_today": {
+            "tool": 2,
+            "database": 2,
+            "match": true
+          },
+          "requester matches landlord": {
+            "tool": true,
+            "database": true,
+            "match": true
+          }
+        },
+        "database_values": {
+          "today": "2026-08-31",
+          "ticket": {
+            "id": 102,
+            "type": "rent_notice",
+            "requester": "Elm City Properties",
+            "subject": "Rent due",
+            "sku": null,
+            "size": null,
+            "qty": null,
+            "lease_id": 1,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Email: shop rent due in 2 days.",
+            "created_at": "2026-08-31T11:05:00-04:00",
+            "assigned_to": null
+          },
+          "lease": {
+            "id": 1,
+            "space_name": "Chapel Street shop",
+            "landlord": "Elm City Properties",
+            "monthly_rent": 2400.0,
+            "next_due": "2026-09-02",
+            "notes": null
+          }
+        },
+        "earlier_prompts_for_problem_4": [
+          "Ok Problem 4 is to add the MCP server to the Vibe coder and test each tool. Can you do that? Same the connection JSON text in .mpc.json as the project root or however the vibe coder saves local MCP server lists)",
+          "label this as probelm 4",
+          "Go, test the tools"
+        ]
+      },
+      {
+        "1_prompt_asked_to_vibe_coder": "With the vibe coder connected. Test each of the 3 MCP tools. Save the evidence in the output/mcp_smoke.json  I think you already did this.  for ever tool include: 1 the prompt I asked the vibe coder, 2. the tool name, 3. the tool output (must match values in data/campus_customs_new.db",
+        "2_tool_name": "ticket_brief",
+        "3_tool_output": {
+          "today": "2026-08-31",
+          "ticket": {
+            "id": 103,
+            "type": "price_override",
+            "requester": "Yale AI Club",
+            "subject": "Bulk hoodie discount",
+            "sku": "CC-HOOD-NAVY",
+            "size": "M",
+            "qty": 20,
+            "lease_id": null,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+            "created_at": "2026-08-31T16:55:00-04:00",
+            "assigned_to": null
+          },
+          "stock": {
+            "name": "Basic Hoodie Big Yale",
+            "qty": 8,
+            "location": "Aisle A",
+            "sku": "CC-HOOD-NAVY",
+            "size": "M",
+            "on_hand": 8,
+            "wanted": 20,
+            "short_by": 12
+          },
+          "pricing": {
+            "unit_cost": 22,
+            "list_price": 58,
+            "lowest_allowed_price": 49.3
+          },
+          "approval_requests": []
+        },
+        "tool_called_as": "mcp__campus-customs__ticket_brief",
+        "arguments": {
+          "ticket_id": 103
+        },
+        "matches_campus_customs_new_db": true,
+        "value_by_value": {
+          "today = desk.date_today": {
+            "tool": "2026-08-31",
+            "database": "2026-08-31",
+            "match": true
+          },
+          "ticket row = tickets row": {
+            "tool": {
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00",
+              "assigned_to": null
+            },
+            "database": {
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00",
+              "assigned_to": null
+            },
+            "match": true
+          },
+          "on_hand = inventory.qty": {
+            "tool": 8,
+            "database": 8,
+            "match": true
+          },
+          "wanted = tickets.qty": {
+            "tool": 20,
+            "database": 20,
+            "match": true
+          },
+          "short_by = tickets.qty - inventory.qty": {
+            "tool": 12,
+            "database": 12,
+            "match": true
+          },
+          "unit_cost = pricing.unit_cost": {
+            "tool": 22,
+            "database": 22.0,
+            "match": true
+          },
+          "list_price = pricing.list_price": {
+            "tool": 58,
+            "database": 58.0,
+            "match": true
+          },
+          "15% floor = pricing.list_price x 0.85": {
+            "tool": 49.3,
+            "database": 49.3,
+            "match": true
+          }
+        },
+        "database_values": {
+          "today": "2026-08-31",
+          "ticket": {
+            "id": 103,
+            "type": "price_override",
+            "requester": "Yale AI Club",
+            "subject": "Bulk hoodie discount",
+            "sku": "CC-HOOD-NAVY",
+            "size": "M",
+            "qty": 20,
+            "lease_id": null,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+            "created_at": "2026-08-31T16:55:00-04:00",
+            "assigned_to": null
+          },
+          "inventory": {
+            "sku": "CC-HOOD-NAVY",
+            "name": "Basic Hoodie Big Yale",
+            "size": "M",
+            "qty": 8,
+            "location": "Aisle A"
+          },
+          "pricing": {
+            "sku": "CC-HOOD-NAVY",
+            "unit_cost": 22.0,
+            "list_price": 58.0
+          }
+        },
+        "earlier_prompts_for_problem_4": [
+          "Ok Problem 4 is to add the MCP server to the Vibe coder and test each tool. Can you do that? Same the connection JSON text in .mpc.json as the project root or however the vibe coder saves local MCP server lists)",
+          "label this as probelm 4",
+          "Go, test the tools"
+        ]
+      },
+      {
+        "1_prompt_asked_to_vibe_coder": "With the vibe coder connected. Test each of the 3 MCP tools. Save the evidence in the output/mcp_smoke.json  I think you already did this.  for ever tool include: 1 the prompt I asked the vibe coder, 2. the tool name, 3. the tool output (must match values in data/campus_customs_new.db",
+        "2_tool_name": "cash_plan",
+        "3_tool_output": {
+          "today": "2026-08-31",
+          "cash_balance": 3400,
+          "total_owed": 3240,
+          "cash_left_if_all_paid": 160,
+          "short_by": 0,
+          "items": [
+            {
+              "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+              "due": "2026-08-28",
+              "amount": 840,
+              "overdue": true,
+              "approval_request": null,
+              "cash_left_after": 2560,
+              "affordable": true
+            },
+            {
+              "item": "Rent: Chapel Street shop (Elm City Properties)",
+              "due": "2026-09-02",
+              "amount": 2400,
+              "overdue": false,
+              "approval_request": null,
+              "cash_left_after": 160,
+              "affordable": true
+            }
+          ]
+        },
+        "tool_called_as": "mcp__campus-customs__cash_plan",
+        "arguments": {},
+        "matches_campus_customs_new_db": true,
+        "value_by_value": {
+          "cash_balance = cash_accounts.balance": {
+            "tool": 3400,
+            "database": 3400.0,
+            "match": true
+          },
+          "items = open invoices + lease rent, in due-date order": {
+            "tool": [
+              [
+                "2026-08-28",
+                840
+              ],
+              [
+                "2026-09-02",
+                2400
+              ]
+            ],
+            "database": [
+              [
+                "2026-08-28",
+                840.0
+              ],
+              [
+                "2026-09-02",
+                2400.0
+              ]
+            ],
+            "match": true
+          },
+          "total_owed = sum of those amounts": {
+            "tool": 3240,
+            "database": 3240.0,
+            "match": true
+          },
+          "cash left = balance - total_owed": {
+            "tool": 160,
+            "database": 160.0,
+            "match": true
+          }
+        },
+        "database_values": {
+          "cash_accounts": {
+            "name": "checking",
+            "balance": 3400.0,
+            "date": "2026-08-31"
+          },
+          "open_invoices": [
+            {
+              "id": 501,
+              "amount": 840.0,
+              "due_date": "2026-08-28"
+            }
+          ],
+          "leases": [
+            {
+              "id": 1,
+              "monthly_rent": 2400.0,
+              "next_due": "2026-09-02"
+            }
+          ]
+        },
+        "earlier_prompts_for_problem_4": [
+          "Ok Problem 4 is to add the MCP server to the Vibe coder and test each tool. Can you do that? Same the connection JSON text in .mpc.json as the project root or however the vibe coder saves local MCP server lists)",
+          "label this as probelm 4",
+          "Go, test the tools"
+        ]
+      },
+      {
+        "1_prompt_asked_to_vibe_coder": "With the vibe coder connected. Test each of the 3 MCP tools. Save the evidence in the output/mcp_smoke.json  I think you already did this.  for ever tool include: 1 the prompt I asked the vibe coder, 2. the tool name, 3. the tool output (must match values in data/campus_customs_new.db",
+        "2_tool_name": "audit_check",
+        "3_tool_output": {
+          "ok": true,
+          "starting_cash": 3400,
+          "payments_total": 0,
+          "cash_balance": 3400,
+          "checks": [
+            {
+              "check": "Cash adds up",
+              "ok": true,
+              "detail": "Starting $3,400.00 - payments $0.00 = $3,400.00; balance is $3,400.00."
+            },
+            {
+              "check": "No negative balance",
+              "ok": true,
+              "detail": "Balance is $3,400.00."
+            },
+            {
+              "check": "Every payment approved by a human",
+              "ok": true,
+              "detail": "All payments name a human approver."
+            },
+            {
+              "check": "Every payment has an approved request",
+              "ok": true,
+              "detail": "Each payment matches an approved request."
+            },
+            {
+              "check": "Every paid invoice has a payment",
+              "ok": true,
+              "detail": "Each paid invoice has a payment row."
+            }
+          ]
+        },
+        "tool_called_as": "mcp__campus-customs__audit_check",
+        "arguments": {},
+        "matches_campus_customs_new_db": true,
+        "value_by_value": {
+          "starting_cash = original cash_accounts.balance": {
+            "tool": 3400,
+            "database": 3400.0,
+            "match": true
+          },
+          "cash_balance = working cash_accounts.balance": {
+            "tool": 3400,
+            "database": 3400.0,
+            "match": true
+          },
+          "payments_total = sum of payments.amount": {
+            "tool": 0,
+            "database": 0,
+            "match": true
+          },
+          "all checks ok": {
+            "tool": true,
+            "database": true,
+            "match": true
+          }
+        },
+        "database_values": {
+          "original_cash_accounts": {
+            "name": "checking",
+            "balance": 3400.0,
+            "date": "2026-08-31"
+          },
+          "working_cash_accounts": {
+            "name": "checking",
+            "balance": 3400.0,
+            "date": "2026-08-31"
+          },
+          "payments": [],
+          "paid_invoices": []
+        },
+        "earlier_prompts_for_problem_4": [
+          "Ok Problem 4 is to add the MCP server to the Vibe coder and test each tool. Can you do that? Same the connection JSON text in .mpc.json as the project root or however the vibe coder saves local MCP server lists)",
+          "label this as probelm 4",
+          "Go, test the tools"
+        ]
+      }
+    ],
+    "how_to_read": "Each call lists 1) the prompt Adrian asked the vibe coder, 2) the tool name, 3) the tool output; 'value_by_value' compares the output with values read by plain SQL from data/campus_customs_new.db."
+  },
+  "test": "MCP smoke test of Adrian's 3 tools (Problem 3)",
+  "adrian_prompts": [
+    "ok. now with the vibe coder connected. Can we test each or my three MCP tools? save the evidence in output/mcp_smoke.json",
+    "for each tool: include my prompts, the tool name, the tool output which will match the values in our data/campus_customs_new.db file"
+  ],
+  "run_at": "2026-11-03T21:45:00",
+  "connection": {
+    "config_file": ".mcp.json",
+    "server": "campus-customs",
+    "transport": "stdio (the same way the vibe coder connects)",
+    "tools_listed": 28,
+    "adrians_tools_listed": [
+      "ticket_brief",
+      "cash_plan",
+      "audit_check"
+    ]
+  },
+  "database": {
+    "file": "data/campus_customs_new.db",
+    "how_compared": "database_values are read with plain SQL straight from the file, not through the MCP server",
+    "unchanged_by_test": true
+  },
+  "summary": {
+    "calls": 5,
+    "passed": 5,
+    "values_compared": 37,
+    "all_passed": true
+  },
+  "calls": [
+    {
+      "adrian_prompts": [
+        "ok. now with the vibe coder connected. Can we test each or my three MCP tools? save the evidence in output/mcp_smoke.json",
+        "for each tool: include my prompts, the tool name, the tool output which will match the values in our data/campus_customs_new.db file"
+      ],
+      "tool": "ticket_brief",
+      "arguments": {
+        "ticket_id": 101
+      },
+      "passed": true,
+      "matches_database": {
+        "today = desk.date_today": {
+          "tool": "2026-08-31",
+          "database": "2026-08-31",
+          "match": true
+        },
+        "ticket row = tickets row": {
+          "tool": {
+            "id": 101,
+            "type": "customer_order",
+            "requester": "Tauhid Zaman",
+            "subject": "Bulldog tee",
+            "sku": "CC-TEE-WHITE",
+            "size": "S",
+            "qty": 1,
+            "lease_id": null,
+            "invoice_id": 501,
+            "status": "open",
+            "notes": "Needs a tee in size S.",
+            "created_at": "2026-08-31T09:15:00-04:00",
+            "assigned_to": null
+          },
+          "database": {
+            "id": 101,
+            "type": "customer_order",
+            "requester": "Tauhid Zaman",
+            "subject": "Bulldog tee",
+            "sku": "CC-TEE-WHITE",
+            "size": "S",
+            "qty": 1,
+            "lease_id": null,
+            "invoice_id": 501,
+            "status": "open",
+            "notes": "Needs a tee in size S.",
+            "created_at": "2026-08-31T09:15:00-04:00",
+            "assigned_to": null
+          },
+          "match": true
+        },
+        "on_hand = inventory.qty": {
+          "tool": 0,
+          "database": 0,
+          "match": true
+        },
+        "wanted = tickets.qty": {
+          "tool": 1,
+          "database": 1,
+          "match": true
+        },
+        "short_by = tickets.qty - inventory.qty": {
+          "tool": 1,
+          "database": 1,
+          "match": true
+        },
+        "unit_cost = pricing.unit_cost": {
+          "tool": 8.0,
+          "database": 8.0,
+          "match": true
+        },
+        "list_price = pricing.list_price": {
+          "tool": 28.0,
+          "database": 28.0,
+          "match": true
+        },
+        "15% floor = pricing.list_price x 0.85": {
+          "tool": 23.8,
+          "database": 23.8,
+          "match": true
+        },
+        "invoice amount = invoices.amount": {
+          "tool": 840.0,
+          "database": 840.0,
+          "match": true
+        },
+        "invoice due = invoices.due_date": {
+          "tool": "2026-08-28",
+          "database": "2026-08-28",
+          "match": true
+        },
+        "invoice status = invoices.status": {
+          "tool": "open",
+          "database": "open",
+          "match": true
+        },
+        "days overdue = desk.date_today - invoices.due_date": {
+          "tool": 3,
+          "database": 3,
+          "match": true
+        },
+        "vendor = vendors.name": {
+          "tool": "Bulldog Print Co",
+          "database": "Bulldog Print Co",
+          "match": true
+        },
+        "vendor_can_ship = vendor has no open invoice": {
+          "tool": false,
+          "database": false,
+          "match": true
+        }
+      },
+      "tool_output": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "open",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": []
+      },
+      "database_values": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "open",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": null
+        },
+        "inventory": {
+          "sku": "CC-TEE-WHITE",
+          "name": "Classic Bulldog Tee",
+          "size": "S",
+          "qty": 0,
+          "location": "Aisle B"
+        },
+        "pricing": {
+          "sku": "CC-TEE-WHITE",
+          "unit_cost": 8.0,
+          "list_price": 28.0
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S"
+        },
+        "vendor": {
+          "id": 1,
+          "name": "Bulldog Print Co",
+          "specialty": "apparel reprint",
+          "lead_days": 5
+        }
+      }
+    },
+    {
+      "adrian_prompts": [
+        "ok. now with the vibe coder connected. Can we test each or my three MCP tools? save the evidence in output/mcp_smoke.json",
+        "for each tool: include my prompts, the tool name, the tool output which will match the values in our data/campus_customs_new.db file"
+      ],
+      "tool": "ticket_brief",
+      "arguments": {
+        "ticket_id": 102
+      },
+      "passed": true,
+      "matches_database": {
+        "today = desk.date_today": {
+          "tool": "2026-08-31",
+          "database": "2026-08-31",
+          "match": true
+        },
+        "ticket row = tickets row": {
+          "tool": {
+            "id": 102,
+            "type": "rent_notice",
+            "requester": "Elm City Properties",
+            "subject": "Rent due",
+            "sku": null,
+            "size": null,
+            "qty": null,
+            "lease_id": 1,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Email: shop rent due in 2 days.",
+            "created_at": "2026-08-31T11:05:00-04:00",
+            "assigned_to": null
+          },
+          "database": {
+            "id": 102,
+            "type": "rent_notice",
+            "requester": "Elm City Properties",
+            "subject": "Rent due",
+            "sku": null,
+            "size": null,
+            "qty": null,
+            "lease_id": 1,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Email: shop rent due in 2 days.",
+            "created_at": "2026-08-31T11:05:00-04:00",
+            "assigned_to": null
+          },
+          "match": true
+        },
+        "rent = leases.monthly_rent": {
+          "tool": 2400.0,
+          "database": 2400.0,
+          "match": true
+        },
+        "next due = leases.next_due": {
+          "tool": "2026-09-02",
+          "database": "2026-09-02",
+          "match": true
+        },
+        "landlord = leases.landlord": {
+          "tool": "Elm City Properties",
+          "database": "Elm City Properties",
+          "match": true
+        },
+        "days until due = leases.next_due - desk.date_today": {
+          "tool": 2,
+          "database": 2,
+          "match": true
+        },
+        "requester matches landlord": {
+          "tool": true,
+          "database": true,
+          "match": true
+        }
+      },
+      "tool_output": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 102,
+          "type": "rent_notice",
+          "requester": "Elm City Properties",
+          "subject": "Rent due",
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "lease_id": 1,
+          "invoice_id": null,
+          "status": "open",
+          "notes": "Email: shop rent due in 2 days.",
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "assigned_to": null
+        },
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "overdue": false,
+          "requester_matches_landlord": true
+        },
+        "approval_requests": []
+      },
+      "database_values": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 102,
+          "type": "rent_notice",
+          "requester": "Elm City Properties",
+          "subject": "Rent due",
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "lease_id": 1,
+          "invoice_id": null,
+          "status": "open",
+          "notes": "Email: shop rent due in 2 days.",
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "assigned_to": null
+        },
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null
+        }
+      }
+    },
+    {
+      "adrian_prompts": [
+        "ok. now with the vibe coder connected. Can we test each or my three MCP tools? save the evidence in output/mcp_smoke.json",
+        "for each tool: include my prompts, the tool name, the tool output which will match the values in our data/campus_customs_new.db file"
+      ],
+      "tool": "ticket_brief",
+      "arguments": {
+        "ticket_id": 103
+      },
+      "passed": true,
+      "matches_database": {
+        "today = desk.date_today": {
+          "tool": "2026-08-31",
+          "database": "2026-08-31",
+          "match": true
+        },
+        "ticket row = tickets row": {
+          "tool": {
+            "id": 103,
+            "type": "price_override",
+            "requester": "Yale AI Club",
+            "subject": "Bulk hoodie discount",
+            "sku": "CC-HOOD-NAVY",
+            "size": "M",
+            "qty": 20,
+            "lease_id": null,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+            "created_at": "2026-08-31T16:55:00-04:00",
+            "assigned_to": null
+          },
+          "database": {
+            "id": 103,
+            "type": "price_override",
+            "requester": "Yale AI Club",
+            "subject": "Bulk hoodie discount",
+            "sku": "CC-HOOD-NAVY",
+            "size": "M",
+            "qty": 20,
+            "lease_id": null,
+            "invoice_id": null,
+            "status": "open",
+            "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+            "created_at": "2026-08-31T16:55:00-04:00",
+            "assigned_to": null
+          },
+          "match": true
+        },
+        "on_hand = inventory.qty": {
+          "tool": 8,
+          "database": 8,
+          "match": true
+        },
+        "wanted = tickets.qty": {
+          "tool": 20,
+          "database": 20,
+          "match": true
+        },
+        "short_by = tickets.qty - inventory.qty": {
+          "tool": 12,
+          "database": 12,
+          "match": true
+        },
+        "unit_cost = pricing.unit_cost": {
+          "tool": 22.0,
+          "database": 22.0,
+          "match": true
+        },
+        "list_price = pricing.list_price": {
+          "tool": 58.0,
+          "database": 58.0,
+          "match": true
+        },
+        "15% floor = pricing.list_price x 0.85": {
+          "tool": 49.3,
+          "database": 49.3,
+          "match": true
+        }
+      },
+      "tool_output": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 103,
+          "type": "price_override",
+          "requester": "Yale AI Club",
+          "subject": "Bulk hoodie discount",
+          "sku": "CC-HOOD-NAVY",
+          "size": "M",
+          "qty": 20,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "open",
+          "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+          "created_at": "2026-08-31T16:55:00-04:00",
+          "assigned_to": null
+        },
+        "stock": {
+          "name": "Basic Hoodie Big Yale",
+          "qty": 8,
+          "location": "Aisle A",
+          "sku": "CC-HOOD-NAVY",
+          "size": "M",
+          "on_hand": 8,
+          "wanted": 20,
+          "short_by": 12
+        },
+        "pricing": {
+          "unit_cost": 22.0,
+          "list_price": 58.0,
+          "lowest_allowed_price": 49.3
+        },
+        "approval_requests": []
+      },
+      "database_values": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 103,
+          "type": "price_override",
+          "requester": "Yale AI Club",
+          "subject": "Bulk hoodie discount",
+          "sku": "CC-HOOD-NAVY",
+          "size": "M",
+          "qty": 20,
+          "lease_id": null,
+          "invoice_id": null,
+          "status": "open",
+          "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+          "created_at": "2026-08-31T16:55:00-04:00",
+          "assigned_to": null
+        },
+        "inventory": {
+          "sku": "CC-HOOD-NAVY",
+          "name": "Basic Hoodie Big Yale",
+          "size": "M",
+          "qty": 8,
+          "location": "Aisle A"
+        },
+        "pricing": {
+          "sku": "CC-HOOD-NAVY",
+          "unit_cost": 22.0,
+          "list_price": 58.0
+        }
+      }
+    },
+    {
+      "adrian_prompts": [
+        "ok. now with the vibe coder connected. Can we test each or my three MCP tools? save the evidence in output/mcp_smoke.json",
+        "for each tool: include my prompts, the tool name, the tool output which will match the values in our data/campus_customs_new.db file"
+      ],
+      "tool": "cash_plan",
+      "arguments": {},
+      "passed": true,
+      "matches_database": {
+        "cash_balance = cash_accounts.balance": {
+          "tool": 3400.0,
+          "database": 3400.0,
+          "match": true
+        },
+        "items = open invoices + lease rent, in due-date order": {
+          "tool": [
+            [
+              "2026-08-28",
+              840.0
+            ],
+            [
+              "2026-09-02",
+              2400.0
+            ]
+          ],
+          "database": [
+            [
+              "2026-08-28",
+              840.0
+            ],
+            [
+              "2026-09-02",
+              2400.0
+            ]
+          ],
+          "match": true
+        },
+        "total_owed = sum of those amounts": {
+          "tool": 3240.0,
+          "database": 3240.0,
+          "match": true
+        },
+        "cash left = balance - total_owed": {
+          "tool": 160.0,
+          "database": 160.0,
+          "match": true
+        }
+      },
+      "tool_output": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3240.0,
+        "cash_left_if_all_paid": 160.0,
+        "short_by": 0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "cash_left_after": 160.0,
+            "affordable": true
+          }
+        ]
+      },
+      "database_values": {
+        "cash_accounts": {
+          "name": "checking",
+          "balance": 3400.0,
+          "date": "2026-08-31"
+        },
+        "open_invoices": [
+          {
+            "id": 501,
+            "amount": 840.0,
+            "due_date": "2026-08-28"
+          }
+        ],
+        "leases": [
+          {
+            "id": 1,
+            "monthly_rent": 2400.0,
+            "next_due": "2026-09-02"
+          }
+        ]
+      }
+    },
+    {
+      "adrian_prompts": [
+        "ok. now with the vibe coder connected. Can we test each or my three MCP tools? save the evidence in output/mcp_smoke.json",
+        "for each tool: include my prompts, the tool name, the tool output which will match the values in our data/campus_customs_new.db file"
+      ],
+      "tool": "audit_check",
+      "arguments": {},
+      "passed": true,
+      "matches_database": {
+        "starting_cash = original cash_accounts.balance": {
+          "tool": 3400.0,
+          "database": 3400.0,
+          "match": true
+        },
+        "cash_balance = working cash_accounts.balance": {
+          "tool": 3400.0,
+          "database": 3400.0,
+          "match": true
+        },
+        "payments_total = sum of payments.amount": {
+          "tool": 0,
+          "database": 0,
+          "match": true
+        },
+        "all checks ok": {
+          "tool": true,
+          "database": true,
+          "match": true
+        }
+      },
+      "tool_output": {
+        "ok": true,
+        "starting_cash": 3400.0,
+        "payments_total": 0,
+        "cash_balance": 3400.0,
+        "checks": [
+          {
+            "check": "Cash adds up",
+            "ok": true,
+            "detail": "Starting $3,400.00 - payments $0.00 = $3,400.00; balance is $3,400.00."
+          },
+          {
+            "check": "No negative balance",
+            "ok": true,
+            "detail": "Balance is $3,400.00."
+          },
+          {
+            "check": "Every payment approved by a human",
+            "ok": true,
+            "detail": "All payments name a human approver."
+          },
+          {
+            "check": "Every payment has an approved request",
+            "ok": true,
+            "detail": "Each payment matches an approved request."
+          },
+          {
+            "check": "Every paid invoice has a payment",
+            "ok": true,
+            "detail": "Each paid invoice has a payment row."
+          }
+        ]
+      },
+      "database_values": {
+        "original_cash_accounts": {
+          "name": "checking",
+          "balance": 3400.0,
+          "date": "2026-08-31"
+        },
+        "working_cash_accounts": {
+          "name": "checking",
+          "balance": 3400.0,
+          "date": "2026-08-31"
+        },
+        "payments": [],
+        "paid_invoices": []
+      }
+    }
+  ]
+}

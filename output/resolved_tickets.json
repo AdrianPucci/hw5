@@ -1,0 +1,347 @@
+{
+  "generated_at": "2026-11-07T09:46:01",
+  "since_reset": "2026-11-07T09:32:30",
+  "model": "gpt-6-luna (Portkey)",
+  "cash": {
+    "starting_balance": 3400.0,
+    "paid_out": 0,
+    "ending_balance": 3400.0,
+    "start_minus_payments": 3400.0,
+    "matches_cash_accounts": true
+  },
+  "tickets": [
+    {
+      "id": 101,
+      "subject": "Bulldog tee",
+      "requester": "Tauhid Zaman",
+      "final_status": "needs_approval",
+      "resolved_at": null,
+      "short_outcome": "Ticket #101 requests one Bulldog tee in size S, but none are in stock. Inventory found the only suitable vendor cannot ship while invoice #501 remains unpaid; Accounting has requested human approval #1 for that overdue invoice, so the ticket correctly remains in needs_approval and blocked pending the invoice decision.",
+      "money": {
+        "paid": 0,
+        "payments": []
+      },
+      "agents": {
+        "Boss": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [
+            "Inventory"
+          ],
+          "tools": [
+            "ticket_brief",
+            "get_team_status",
+            "ticket_timeline",
+            "assign_ticket",
+            "cash_plan",
+            "audit_check"
+          ],
+          "last_report": "Ticket #101 requests one Bulldog tee in size S, but none are in stock. Inventory found the only suitable vendor cannot ship while invoice #501 remains unpaid; Accounting has requested human approval #1 for that overdue invoice, so the ticket correctly remains in needs_approval and blocked pending the invoice decision."
+        },
+        "Inventory": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [
+            "Accounting"
+          ],
+          "tools": [
+            "get_today",
+            "ticket_timeline",
+            "ticket_brief",
+            "blockers",
+            "list_purchase_orders",
+            "restock_options",
+            "set_blocker",
+            "add_ticket_note",
+            "flag_for_human"
+          ],
+          "last_report": "Ticket #101 needs one CC-TEE-WHITE size S, but stock is zero. The only specialty-fit supplier, Bulldog Print Co, cannot ship while invoice #501 is open; I recorded that blocker and flagged the reorder, and Accounting submitted payment approval request #1 for the invoice."
+        },
+        "Accounting": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [],
+          "tools": [
+            "get_today",
+            "get_team_status",
+            "ticket_brief",
+            "ticket_timeline",
+            "blockers",
+            "get_cash_balance",
+            "list_invoices",
+            "cash_plan",
+            "request_invoice_payment",
+            "add_ticket_note"
+          ],
+          "last_report": "Reviewed open invoice #501 and submitted human approval request #1 for $840.00. The request is pending; nothing has been paid, so vendor shipping eligibility is unchanged and ticket #101 remains blocked by invoice #501."
+        },
+        "Facilities": {
+          "worked": false,
+          "runs": 0,
+          "delegated_to": [],
+          "tools": [],
+          "last_report": null
+        },
+        "Customer Service": {
+          "worked": false,
+          "runs": 0,
+          "delegated_to": [],
+          "tools": [],
+          "last_report": null
+        }
+      },
+      "human_approvals": [
+        {
+          "id": 1,
+          "kind": "invoice_payment",
+          "amount": 840.0,
+          "price": null,
+          "decision": "pending",
+          "decided_by": null,
+          "decided_at": null
+        }
+      ],
+      "drafts": [],
+      "orders_received": [],
+      "customer_replies": [],
+      "runs": [
+        {
+          "run_id": "af636c8f9356",
+          "started": "2026-11-07T09:33:06",
+          "delegations": 2,
+          "model_calls": 16
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "subject": "Rent due",
+      "requester": "Elm City Properties",
+      "final_status": "needs_approval",
+      "resolved_at": null,
+      "short_outcome": "Facilities verified that the rent notice matches lease 1. Accounting created pending human approval request #2 for $2,400; the ticket is in needs_approval, and the audit passed with no payment made.",
+      "money": {
+        "paid": 0,
+        "payments": []
+      },
+      "agents": {
+        "Boss": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [
+            "Facilities",
+            "Accounting"
+          ],
+          "tools": [
+            "ticket_brief",
+            "ticket_timeline",
+            "get_team_status",
+            "assign_ticket",
+            "get_cash_balance",
+            "cash_plan",
+            "staffing_status",
+            "audit_check",
+            "add_ticket_note"
+          ],
+          "last_report": "Facilities verified that the rent notice matches lease 1. Accounting created pending human approval request #2 for $2,400; the ticket is in needs_approval, and the audit passed with no payment made."
+        },
+        "Inventory": {
+          "worked": false,
+          "runs": 0,
+          "delegated_to": [],
+          "tools": [],
+          "last_report": null
+        },
+        "Accounting": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [],
+          "tools": [
+            "ticket_brief",
+            "get_team_status",
+            "get_cash_balance",
+            "ticket_timeline",
+            "rent_check",
+            "earmark_rent_funds",
+            "add_ticket_note",
+            "get_today",
+            "cash_plan",
+            "audit_check",
+            "request_rent_payment"
+          ],
+          "last_report": "Facilities verified lease 1 rent of $2,400 due 2026-09-02. I created pending rent payment request #2; nothing has been paid, and I recommend ticket #102 be marked needs_approval."
+        },
+        "Facilities": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [
+            "Accounting"
+          ],
+          "tools": [
+            "get_today",
+            "ticket_brief",
+            "get_team_status",
+            "rent_check",
+            "ticket_timeline",
+            "staffing_status",
+            "add_ticket_note"
+          ],
+          "last_report": "Verified ticket #102\u2019s notice against lease 1: the landlord/requester and due date match, and rent of $2,400 is due in two days. Accounting earmarked the funds for the due date; no payment request was made, and the recommended next step is to bring Accounting in to prepare one for human approval."
+        },
+        "Customer Service": {
+          "worked": false,
+          "runs": 0,
+          "delegated_to": [],
+          "tools": [],
+          "last_report": null
+        }
+      },
+      "human_approvals": [
+        {
+          "id": 2,
+          "kind": "rent_payment",
+          "amount": 2400.0,
+          "price": null,
+          "decision": "pending",
+          "decided_by": null,
+          "decided_at": null
+        }
+      ],
+      "drafts": [],
+      "orders_received": [],
+      "customer_replies": [],
+      "runs": [
+        {
+          "run_id": "87de717bdc17",
+          "started": "2026-11-07T09:34:27",
+          "delegations": 3,
+          "model_calls": 24
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "subject": "Bulk hoodie discount",
+      "requester": "Yale AI Club",
+      "final_status": "needs_approval",
+      "resolved_at": null,
+      "short_outcome": "Ticket #103 requests 20 navy M hoodies, but only 8 are held and 12 remain unavailable. Price approval #3 for $49.30 each is pending; restock is blocked by overdue invoice #501, shared with ticket #101, and no purchase order was requested. Ticket remains needs_approval, with customer draft #1 saved but unsent.",
+      "money": {
+        "paid": 0,
+        "payments": []
+      },
+      "agents": {
+        "Boss": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [
+            "Inventory",
+            "Accounting",
+            "Customer Service"
+          ],
+          "tools": [
+            "get_team_status",
+            "get_today",
+            "ticket_brief",
+            "ticket_timeline",
+            "assign_ticket",
+            "blockers",
+            "list_approval_requests",
+            "cash_plan",
+            "add_ticket_note",
+            "audit_check",
+            "update_ticket_status"
+          ],
+          "last_report": "Ticket #103 requests 20 navy M hoodies, but only 8 are held and 12 remain unavailable. Price approval #3 for $49.30 each is pending; restock is blocked by overdue invoice #501, shared with ticket #101, and no purchase order was requested. Ticket remains needs_approval, with customer draft #1 saved but unsent."
+        },
+        "Inventory": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [],
+          "tools": [
+            "ticket_brief",
+            "get_team_status",
+            "list_purchase_orders",
+            "ticket_timeline",
+            "restock_options",
+            "check_stock",
+            "hold_stock",
+            "add_ticket_note",
+            "flag_for_human",
+            "set_blocker"
+          ],
+          "last_report": "Ticket #103 cannot currently be fulfilled in full: 8 of 20 CC-HOOD-NAVY size M are on hand, leaving 12 short. I held the available 8 units; the suitable apparel vendor is blocked by open invoice 501, so no purchasing request was created."
+        },
+        "Accounting": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [],
+          "tools": [
+            "ticket_brief",
+            "ticket_timeline",
+            "get_cash_balance",
+            "get_team_status",
+            "get_today",
+            "cash_plan",
+            "list_approval_requests",
+            "list_invoices",
+            "check_margin",
+            "request_price_override",
+            "add_ticket_note"
+          ],
+          "last_report": "Verified the hoodie price floor and requested human approval for the lowest allowed price on all 20 units because the customer gave no target price. The restock purchase is not presently supportable: Bulldog Print Co is blocked by open invoice #501, and the additional $264 would exceed available cash by $104 if existing invoice and rent requests are approved."
+        },
+        "Facilities": {
+          "worked": false,
+          "runs": 0,
+          "delegated_to": [],
+          "tools": [],
+          "last_report": null
+        },
+        "Customer Service": {
+          "worked": true,
+          "runs": 1,
+          "delegated_to": [],
+          "tools": [
+            "ticket_brief",
+            "list_templates",
+            "staffing_status",
+            "ticket_timeline",
+            "save_draft",
+            "add_ticket_note"
+          ],
+          "last_report": "Reviewed ticket #103 and its timeline, then saved a customer-facing draft clarifying that no offer, full availability, price, or fulfillment date is confirmed. The draft was not sent, and the ticket remains needs_approval."
+        }
+      },
+      "human_approvals": [
+        {
+          "id": 3,
+          "kind": "price_override",
+          "amount": 0.0,
+          "price": "20 x CC-HOOD-NAVY M at $49.30",
+          "decision": "pending",
+          "decided_by": null,
+          "decided_at": null
+        }
+      ],
+      "drafts": [
+        {
+          "id": 1,
+          "to": "Yale AI Club",
+          "subject": "Update on your hoodie request",
+          "status": "draft"
+        }
+      ],
+      "orders_received": [],
+      "customer_replies": [],
+      "runs": [
+        {
+          "run_id": "4f47f365f298",
+          "started": "2026-11-07T09:35:58",
+          "delegations": 3,
+          "model_calls": 24
+        }
+      ]
+    }
+  ]
+}

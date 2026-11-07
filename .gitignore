@@ -1,0 +1,13 @@
+# Secrets stay local (Prompt 125): never push .env
+.env
+# Build and environment folders
+.venv/
+__pycache__/
+node_modules/
+dist/
+.claude/
+output/resolved_board/.edge-profile/
+# Temporary notes, not part of the submission
+output/Adrians_Next_Steps.docx
+output/harness_view.html
+notes/database_tables.html

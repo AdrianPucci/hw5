@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "campus-customs": {
+      "command": "C:/Users/avdes/OneDrive/Documents/Yale/AI Class/HMW 5/mcp_server/.venv/Scripts/python.exe",
+      "args": [
+        "C:/Users/avdes/OneDrive/Documents/Yale/AI Class/HMW 5/mcp_server/server.py"
+      ]
+    }
+  }
+}

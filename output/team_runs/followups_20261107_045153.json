@@ -1,0 +1,49 @@
+{
+  "run_id": "cad614a69a26",
+  "task": "followups",
+  "ticket_id": null,
+  "shop_date": "2026-08-31",
+  "started": "2026-11-07T04:51:53",
+  "seconds": 6.3,
+  "model": "gpt-6-luna (Portkey)",
+  "delegations": 0,
+  "model_requests": 3,
+  "error": null,
+  "final_report": {
+    "agent": "Boss",
+    "summary": "Checked the human-decision follow-up queue; no decisions are currently awaiting action. No tickets needed follow-up or resolution changes.",
+    "database_facts": [
+      "tickets_ready_for_followup returned no pending follow-ups.",
+      "Team status is running, not halted."
+    ],
+    "actions_taken": [],
+    "approval_requests": [],
+    "needs_human_decision": []
+  },
+  "activity": [
+    {
+      "time": "2026-11-07T04:51:53",
+      "kind": "start",
+      "agent": "Boss",
+      "task": "Work the follow-ups: call tickets_ready_for_followup(). For each human decision, finish the work it unlocks with the right agents, mark it followed up, and resolve the ticket only when nothing is pending."
+    },
+    {
+      "time": "2026-11-07T04:51:55",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:57",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "tickets_ready_for_followup",
+      "args": {},
+      "result": []
+    }
+  ]
+}

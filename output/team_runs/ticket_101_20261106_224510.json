@@ -1,0 +1,1312 @@
+{
+  "task": "ticket_101",
+  "ticket_id": 101,
+  "started": "2026-11-06T22:45:10",
+  "seconds": 91.0,
+  "model": "gpt-6-luna (Portkey)",
+  "delegations": 3,
+  "model_requests": 24,
+  "error": null,
+  "final_report": {
+    "agent": "Boss",
+    "summary": "Ticket #101 is short one size-S Bulldog tee, and the appropriate supplier cannot ship while overdue invoice #501 remains unpaid. Inventory recorded the invoice blocker and flagged the reorder; Accounting submitted pending payment approval #1, and Customer Service saved unsent message draft #1. The ticket remains in needs_approval.",
+    "database_facts": [
+      "Shop date is 2026-08-31.",
+      "Ticket #101 requests one Classic Bulldog Tee, SKU CC-TEE-WHITE, size S; stock is 0, short by 1, with no units held.",
+      "Invoice #501 is $840, due 2026-08-28 and 3 days overdue; Bulldog Print Co cannot ship while it is open.",
+      "Inventory reports the one-unit restock option costs $8, has a 5-day lead time, and is expected 2026-09-05, but shipping is currently blocked by invoice #501.",
+      "Cash balance is $3,400. Cash plan lists invoice #501 ($840) and Chapel Street rent ($2,400 due 2026-09-02); paying both leaves $160, and including the $8 restock would leave $152.",
+      "Approval request #1 for $840 invoice payment is pending. Audit check passed: starting cash $3,400, payments $0, current balance $3,400; no negative balance or approval/payment issues."
+    ],
+    "actions_taken": [
+      "Assigned ticket #101 to Inventory and delegated the stock/restock work; Inventory recorded invoice blocker #1 and created reorder inbox flag #1.",
+      "Delegated invoice/cash review to Accounting; Accounting created approval request #1 for invoice #501. No payment was made.",
+      "Delegated customer communication to Customer Service; draft #1 was saved and not sent.",
+      "Kept ticket #101 in needs_approval pending human review.",
+      "Ran audit_check; result: ok=true."
+    ],
+    "approval_requests": [
+      1
+    ],
+    "needs_human_decision": [
+      "Decide whether to approve invoice payment request #1. Recommendation: prioritize the overdue $840 invoice because it blocks the specialty vendor, while retaining funds to address the $2,400 rent due 2026-09-02. The listed invoice and rent total $3,240 against $3,400 cash ($160 remaining); a subsequent $8 restock would leave $152. Once the invoice is resolved, consider authorizing the $8 restock order."
+    ]
+  },
+  "activity": [
+    {
+      "time": "2026-11-06T22:45:10",
+      "kind": "start",
+      "agent": "Boss",
+      "task": "Handle ticket #101. Start with ticket_brief, assign it, delegate the work to the right agents, and finish with one recommendation for the human."
+    },
+    {
+      "time": "2026-11-06T22:45:12",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "open",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": null,
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:14",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:14",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "ticket": {
+          "id": 101,
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null
+        },
+        "events": []
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:14",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "blockers",
+      "args": {},
+      "result": []
+    },
+    {
+      "time": "2026-11-06T22:45:14",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_queue",
+      "args": {},
+      "result": [
+        {
+          "ticket_id": 101,
+          "type": "customer_order",
+          "subject": "Bulldog tee",
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null,
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "overdue_days": 3,
+          "due_in_days": null,
+          "open_blockers": 0,
+          "why": [
+            "linked invoice #501 is 3 days overdue",
+            "short 1 x CC-TEE-WHITE S"
+          ],
+          "rank": 1
+        },
+        {
+          "ticket_id": 102,
+          "type": "rent_notice",
+          "subject": "Rent due",
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null,
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "overdue_days": 0,
+          "due_in_days": 2,
+          "open_blockers": 0,
+          "why": [
+            "rent due in 2 days"
+          ],
+          "rank": 2
+        },
+        {
+          "ticket_id": 103,
+          "type": "price_override",
+          "subject": "Bulk hoodie discount",
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null,
+          "created_at": "2026-08-31T16:55:00-04:00",
+          "overdue_days": 0,
+          "due_in_days": null,
+          "open_blockers": 0,
+          "why": [
+            "short 12 x CC-HOOD-NAVY M"
+          ],
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "time": "2026-11-06T22:45:18",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "assign_ticket",
+      "args": {
+        "ticket_id": 101,
+        "agent": "Inventory",
+        "assigned_by": "Boss",
+        "note": "Customer order is short 1 size-S Bulldog tee; Inventory owns stock and restock coordination."
+      },
+      "result": {
+        "ok": true,
+        "ticket_id": 101,
+        "assigned_to": "Inventory"
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:20",
+      "kind": "delegate",
+      "agent": "Boss",
+      "to": "Inventory",
+      "task": "Handle the stock/restock portion of ticket #101 for 1 Classic Bulldog Tee, CC-TEE-WHITE size S. Check the ticket timeline/brief before acting; report stock status, vendor constraint and any blocker/request already or newly recorded. Do not duplicate work or create a payment request.",
+      "chain": [
+        "Boss"
+      ]
+    },
+    {
+      "time": "2026-11-06T22:45:23",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:25",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "get_today",
+      "args": {},
+      "result": {
+        "date_today": "2026-08-31",
+        "notes": null
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:25",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "ticket": {
+          "id": 101,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T22:45:18",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Customer order is short 1 size-S Bulldog tee; Inventory owns stock and restock coordination."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:25",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "in_progress",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:28",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "restock_options",
+      "args": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1
+      },
+      "result": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "name": "Classic Bulldog Tee",
+        "on_hand": 0,
+        "qty": 1,
+        "unit_cost": 8.0,
+        "total_cost": 8.0,
+        "vendors": [
+          {
+            "vendor_id": 3,
+            "vendor": "QuickShip CT",
+            "specialty": "local courier",
+            "lead_days": 1,
+            "expected_on": "2026-09-01",
+            "can_ship": true,
+            "blocked_by_open_invoices": []
+          },
+          {
+            "vendor_id": 2,
+            "vendor": "Elm City Gifts",
+            "specialty": "mugs and small goods",
+            "lead_days": 3,
+            "expected_on": "2026-09-03",
+            "can_ship": true,
+            "blocked_by_open_invoices": []
+          },
+          {
+            "vendor_id": 1,
+            "vendor": "Bulldog Print Co",
+            "specialty": "apparel reprint",
+            "lead_days": 5,
+            "expected_on": "2026-09-05",
+            "can_ship": false,
+            "blocked_by_open_invoices": [
+              {
+                "id": 501,
+                "amount": 840.0,
+                "due_date": "2026-08-28",
+                "description": "Rush reprint CC-TEE-WHITE S"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:34",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "set_blocker",
+      "args": {
+        "ticket_id": 101,
+        "blocker_type": "invoice",
+        "blocker_ref": "501",
+        "reason": "Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers.",
+        "author": "Inventory"
+      },
+      "result": {
+        "ok": true,
+        "blocker_id": 1
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:34",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 101,
+        "author": "Inventory",
+        "note": "Stock check: 0 on hand, 1 wanted, short by 1 (no units held). Specialty-fit restock source is Bulldog Print Co (apparel reprint), $8 for 1, 5-day lead time / expected 2026-09-05, but it cannot ship because open invoice 501 ($840, due 2026-08-28) is 3 days overdue as of 2026-08-31. Recorded invoice blocker 501 and flagged reorder for human review. No purchase/payment request created."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:34",
+      "kind": "tool",
+      "agent": "Inventory",
+      "tool": "flag_for_human",
+      "args": {
+        "author": "Inventory",
+        "category": "reorder",
+        "ticket_id": 101,
+        "message": "Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+      },
+      "result": {
+        "ok": true,
+        "inbox_id": 1,
+        "status": "open"
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:38",
+      "kind": "report",
+      "agent": "Inventory",
+      "to": "Boss",
+      "report": {
+        "agent": "Inventory",
+        "summary": "Ticket #101 has no size-S tee in stock and is short by one unit. The appropriate apparel supplier, Bulldog Print Co, is blocked by open invoice 501; I recorded that blocker and flagged the reorder for human review, without creating a payment or purchase request.",
+        "database_facts": [
+          "Ticket #101 requests 1 Classic Bulldog Tee, SKU CC-TEE-WHITE, size S; status in_progress.",
+          "On hand 0; wanted 1; short by 1; held total 0.",
+          "Today is 2026-08-31. Bulldog Print Co is the apparel reprint supplier; restocking 1 costs $8, has a 5-day lead, expected 2026-09-05, and cannot ship because invoice 501 is open.",
+          "Invoice 501 is $840, due 2026-08-28, and overdue by 3 days.",
+          "Initial ticket brief showed no approval requests; timeline showed no previously recorded blocker or other work."
+        ],
+        "actions_taken": [
+          "Recorded blocker on invoice 501 (blocker ID 1).",
+          "Flagged the reorder for human review (inbox ID 1).",
+          "Added a ticket note documenting stock status, vendor constraint and restock estimate.",
+          "No payment or purchase request created."
+        ],
+        "approval_requests": [],
+        "needs_human_decision": [
+          "Human review is needed for the reorder and the open overdue invoice that prevents the apparel supplier from shipping."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:41",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_cash_balance",
+      "args": {},
+      "result": {
+        "account": "checking",
+        "balance": 3400.0,
+        "as_of": "2026-08-31",
+        "pending_requests_total": 0,
+        "balance_if_all_pending_approved": 3400.0
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:41",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "ticket": {
+          "id": 101,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T22:45:18",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Customer order is short 1 size-S Bulldog tee; Inventory owns stock and restock coordination."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by invoice 501: Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Stock check: 0 on hand, 1 wanted, short by 1 (no units held). Specialty-fit restock source is Bulldog Print Co (apparel reprint), $8 for 1, 5-day lead time / expected 2026-09-05, but it cannot ship because open invoice 501 ($840, due 2026-08-28) is 3 days overdue as of 2026-08-31. Recorded invoice blocker 501 and flagged reorder for human review. No purchase/payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, reorder): Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "blocker #1 (invoice 501)",
+            "by": "Inventory",
+            "detail": "Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers. (open)"
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "inbox #1 (reorder)",
+            "by": "Inventory",
+            "detail": "Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:41",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "cash_plan",
+      "args": {},
+      "result": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3240.0,
+        "cash_left_if_all_paid": 160.0,
+        "short_by": 0,
+        "earmarked_for_rent": 0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "earmarked": false,
+            "cash_left_after": 160.0,
+            "affordable": true
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:41",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "in_progress",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:46",
+      "kind": "delegate",
+      "agent": "Boss",
+      "to": "Accounting",
+      "task": "Handle the cash/invoice portion of ticket #101. Review the current ticket timeline/brief and cash_plan; do not duplicate requests. Invoice #501 is overdue and blocks Bulldog Print Co from shipping the 1-unit restock. Assess whether to request its payment under the human-approval rule, record the invoice blocker if needed, and report the cash implications/recommended human priority alongside the rent due soon. Do not approve or make payment.",
+      "chain": [
+        "Boss"
+      ]
+    },
+    {
+      "time": "2026-11-06T22:45:56",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_cash_balance",
+      "args": {},
+      "result": {
+        "account": "checking",
+        "balance": 3400.0,
+        "as_of": "2026-08-31",
+        "pending_requests_total": 0,
+        "balance_if_all_pending_approved": 3400.0
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:56",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_today",
+      "args": {},
+      "result": {
+        "date_today": "2026-08-31",
+        "notes": null
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:56",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "ticket": {
+          "id": 101,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T22:45:18",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Customer order is short 1 size-S Bulldog tee; Inventory owns stock and restock coordination."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by invoice 501: Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Stock check: 0 on hand, 1 wanted, short by 1 (no units held). Specialty-fit restock source is Bulldog Print Co (apparel reprint), $8 for 1, 5-day lead time / expected 2026-09-05, but it cannot ship because open invoice 501 ($840, due 2026-08-28) is 3 days overdue as of 2026-08-31. Recorded invoice blocker 501 and flagged reorder for human review. No purchase/payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, reorder): Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "blocker #1 (invoice 501)",
+            "by": "Inventory",
+            "detail": "Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers. (open)"
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "inbox #1 (reorder)",
+            "by": "Inventory",
+            "detail": "Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:56",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:56",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "in_progress",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-06T22:45:56",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "cash_plan",
+      "args": {},
+      "result": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3240.0,
+        "cash_left_if_all_paid": 160.0,
+        "short_by": 0,
+        "earmarked_for_rent": 0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "earmarked": false,
+            "cash_left_after": 160.0,
+            "affordable": true
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:00",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "request_invoice_payment",
+      "args": {
+        "invoice_id": 501,
+        "requested_by": "Accounting",
+        "reason": "Invoice 501 is 3 days overdue and blocks Bulldog Print Co from shipping the 1-unit size-S restock on ticket 101. The cash plan shows $3,400 available; paying this $840 invoice leaves $2,560, enough for the $2,400 rent due 2026-09-02, with $160 remaining if both are paid. Human approval is required; payment is not made by this request.",
+        "ticket_id": 101
+      },
+      "result": {
+        "ok": true,
+        "request_id": 1,
+        "status": "pending",
+        "message": "Waiting for human approval on the dashboard. Nothing has been paid or changed yet.",
+        "amount": 840.0,
+        "cash_balance": 3400.0,
+        "cash_after_all_pending_requests": 2560.0
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:03",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 101,
+        "author": "Accounting",
+        "note": "Accounting requested human approval for payment of invoice #501 ($840; 3 days overdue as of 2026-08-31), request #1. Cash plan: $3,400 available; paying invoice #501 leaves $2,560, and the $2,400 Chapel Street rent due 2026-09-02 is also affordable; paying both leaves $160. Recommended human priority: approve the overdue invoice to unblock Bulldog Print Co's restock, while ensuring rent is paid by its due date. No payment has been made. Invoice blocker #1 was already recorded by Inventory, so no duplicate blocker was added."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:07",
+      "kind": "report",
+      "agent": "Accounting",
+      "to": "Boss",
+      "report": {
+        "agent": "Accounting",
+        "summary": "Invoice #501 is open and 3 days overdue, and the ticket already has an invoice blocker recorded by Inventory. I submitted approval request #1 for $840 and noted the cash impact: the invoice and rent due soon are both affordable, but paying both would leave $160; no payment has been made.",
+        "database_facts": [
+          "Shop date is 2026-08-31.",
+          "Ticket #101 is short 1 size-S Bulldog tee; Bulldog Print Co cannot ship while open invoice #501 remains unpaid.",
+          "Invoice #501 is $840, due 2026-08-28, and 3 days overdue.",
+          "Cash plan shows $3,400 available; after the $840 invoice, $2,560 remains; Chapel Street rent of $2,400 is due 2026-09-02; paying both leaves $160.",
+          "Ticket timeline already records invoice blocker #1; no approval request previously existed."
+        ],
+        "actions_taken": [
+          "Requested human approval for invoice #501 payment, request #1; nothing was paid.",
+          "Added an Accounting note with cash implications and recommended priority.",
+          "Did not add a duplicate blocker."
+        ],
+        "approval_requests": [
+          1
+        ],
+        "needs_human_decision": [
+          "Approve or decline request #1. Recommendation: prioritize the overdue invoice to unblock the specialty supplier, while ensuring the $2,400 rent due 2026-09-02 is addressed; paying both leaves $160."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:11",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "list_approval_requests",
+      "args": {
+        "status": "pending"
+      },
+      "result": [
+        {
+          "id": 1,
+          "kind": "invoice_payment",
+          "ticket_id": 101,
+          "ref_id": 501,
+          "vendor_id": 1,
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "unit_price": null,
+          "amount": 840.0,
+          "requested_by": "Accounting",
+          "reason": "Invoice 501 is 3 days overdue and blocks Bulldog Print Co from shipping the 1-unit size-S restock on ticket 101. The cash plan shows $3,400 available; paying this $840 invoice leaves $2,560, enough for the $2,400 rent due 2026-09-02, with $160 remaining if both are paid. Human approval is required; payment is not made by this request.",
+          "status": "pending",
+          "decided_by": null,
+          "decision_note": null,
+          "created_at": "2026-08-31T22:46:00",
+          "decided_at": null,
+          "followed_up": 0
+        }
+      ]
+    },
+    {
+      "time": "2026-11-06T22:46:11",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "ticket": {
+          "id": 101,
+          "status": "needs_approval",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T22:45:18",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Customer order is short 1 size-S Bulldog tee; Inventory owns stock and restock coordination."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by invoice 501: Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Stock check: 0 on hand, 1 wanted, short by 1 (no units held). Specialty-fit restock source is Bulldog Print Co (apparel reprint), $8 for 1, 5-day lead time / expected 2026-09-05, but it cannot ship because open invoice 501 ($840, due 2026-08-28) is 3 days overdue as of 2026-08-31. Recorded invoice blocker 501 and flagged reorder for human review. No purchase/payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, reorder): Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "blocker #1 (invoice 501)",
+            "by": "Inventory",
+            "detail": "Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers. (open)"
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "inbox #1 (reorder)",
+            "by": "Inventory",
+            "detail": "Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          },
+          {
+            "at": "2026-08-31T22:46:00",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Requested human approval #1 (invoice_payment, $840.00): Invoice 501 is 3 days overdue and blocks Bulldog Print Co from shipping the 1-unit size-S restock on ticket 101. The cash plan shows $3,400 available; paying this $840 invoice leaves $2,560, enough for the $2,400 rent due 2026-09-02, with $160 remaining if both are paid. Human approval is required; payment is not made by this request."
+          },
+          {
+            "at": "2026-08-31T22:46:00",
+            "what": "approval request #1 (invoice_payment)",
+            "by": "Accounting",
+            "detail": "$840.00, status pending"
+          },
+          {
+            "at": "2026-08-31T22:46:03",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Accounting requested human approval for payment of invoice #501 ($840; 3 days overdue as of 2026-08-31), request #1. Cash plan: $3,400 available; paying invoice #501 leaves $2,560, and the $2,400 Chapel Street rent due 2026-09-02 is also affordable; paying both leaves $160. Recommended human priority: approve the overdue invoice to unblock Bulldog Print Co's restock, while ensuring rent is paid by its due date. No payment has been made. Invoice blocker #1 was already recorded by Inventory, so no duplicate blocker was added."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:11",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "audit_check",
+      "args": {},
+      "result": {
+        "ok": true,
+        "starting_cash": 3400.0,
+        "payments_total": 0,
+        "cash_balance": 3400.0,
+        "checks": [
+          {
+            "check": "Cash adds up",
+            "ok": true,
+            "detail": "Starting $3,400.00 - payments $0.00 = $3,400.00; balance is $3,400.00."
+          },
+          {
+            "check": "No negative balance",
+            "ok": true,
+            "detail": "Balance is $3,400.00."
+          },
+          {
+            "check": "Every payment approved by a human",
+            "ok": true,
+            "detail": "All payments name a human approver."
+          },
+          {
+            "check": "Every payment has an approved request",
+            "ok": true,
+            "detail": "Each payment matches an approved request."
+          },
+          {
+            "check": "Every paid invoice has a payment",
+            "ok": true,
+            "detail": "Each paid invoice has a payment row."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:17",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "needs_approval",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": [
+          {
+            "id": 1,
+            "kind": "invoice_payment",
+            "amount": 840.0,
+            "status": "pending",
+            "requested_by": "Accounting",
+            "decided_by": null
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:20",
+      "kind": "delegate",
+      "agent": "Boss",
+      "to": "Customer Service",
+      "task": "For ticket #101, review the current brief/timeline and prepare a customer message draft only (do not send). Tell Tauhid the requested size-S Bulldog tee is currently out of stock and that its specialty supplier cannot ship while invoice #501 remains unpaid; avoid promising a delivery date because supplier shipment is blocked and human approval is pending. Report the draft ID and any status recommendation.",
+      "chain": [
+        "Boss"
+      ]
+    },
+    {
+      "time": "2026-11-06T22:46:22",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:24",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 101,
+          "type": "customer_order",
+          "requester": "Tauhid Zaman",
+          "subject": "Bulldog tee",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "qty": 1,
+          "lease_id": null,
+          "invoice_id": 501,
+          "status": "needs_approval",
+          "notes": "Needs a tee in size S.",
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "assigned_to": "Inventory",
+          "status_reason": null
+        },
+        "stock": {
+          "name": "Classic Bulldog Tee",
+          "qty": 0,
+          "location": "Aisle B",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "on_hand": 0,
+          "wanted": 1,
+          "short_by": 1,
+          "held_total": 0,
+          "held_for_this_ticket": 0
+        },
+        "pricing": {
+          "unit_cost": 8.0,
+          "list_price": 28.0,
+          "lowest_allowed_price": 23.8
+        },
+        "invoice": {
+          "id": 501,
+          "vendor_id": 1,
+          "amount": 840.0,
+          "due_date": "2026-08-28",
+          "status": "open",
+          "description": "Rush reprint CC-TEE-WHITE S",
+          "vendor": "Bulldog Print Co",
+          "lead_days": 5,
+          "overdue": true,
+          "days_overdue": 3
+        },
+        "vendor_can_ship": false,
+        "approval_requests": [
+          {
+            "id": 1,
+            "kind": "invoice_payment",
+            "amount": 840.0,
+            "status": "pending",
+            "requested_by": "Accounting",
+            "decided_by": null
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:24",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 101
+      },
+      "result": {
+        "ticket": {
+          "id": 101,
+          "status": "needs_approval",
+          "status_reason": null,
+          "assigned_to": "Inventory"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T22:45:18",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Inventory: Customer order is short 1 size-S Bulldog tee; Inventory owns stock and restock coordination."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Blocked by invoice 501: Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Stock check: 0 on hand, 1 wanted, short by 1 (no units held). Specialty-fit restock source is Bulldog Print Co (apparel reprint), $8 for 1, 5-day lead time / expected 2026-09-05, but it cannot ship because open invoice 501 ($840, due 2026-08-28) is 3 days overdue as of 2026-08-31. Recorded invoice blocker 501 and flagged reorder for human review. No purchase/payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "note",
+            "by": "Inventory",
+            "detail": "Flagged for human review (inbox #1, reorder): Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "blocker #1 (invoice 501)",
+            "by": "Inventory",
+            "detail": "Apparel supplier Bulldog Print Co cannot ship the 1-unit restock for CC-TEE-WHITE size S while invoice 501 remains open; alternative listed vendors are not appropriate specialty suppliers. (open)"
+          },
+          {
+            "at": "2026-08-31T22:45:34",
+            "what": "inbox #1 (reorder)",
+            "by": "Inventory",
+            "detail": "Reorder needed: CC-TEE-WHITE (Classic Bulldog Tee), size S, quantity 1 short. Appropriate apparel vendor is Bulldog Print Co; it cannot ship while open invoice 501 remains unpaid. Restock option: $8 total, 5-day lead time, expected 2026-09-05; vendor unable to ship currently. No payment request created."
+          },
+          {
+            "at": "2026-08-31T22:46:00",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Requested human approval #1 (invoice_payment, $840.00): Invoice 501 is 3 days overdue and blocks Bulldog Print Co from shipping the 1-unit size-S restock on ticket 101. The cash plan shows $3,400 available; paying this $840 invoice leaves $2,560, enough for the $2,400 rent due 2026-09-02, with $160 remaining if both are paid. Human approval is required; payment is not made by this request."
+          },
+          {
+            "at": "2026-08-31T22:46:00",
+            "what": "approval request #1 (invoice_payment)",
+            "by": "Accounting",
+            "detail": "$840.00, status pending"
+          },
+          {
+            "at": "2026-08-31T22:46:03",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Accounting requested human approval for payment of invoice #501 ($840; 3 days overdue as of 2026-08-31), request #1. Cash plan: $3,400 available; paying invoice #501 leaves $2,560, and the $2,400 Chapel Street rent due 2026-09-02 is also affordable; paying both leaves $160. Recommended human priority: approve the overdue invoice to unblock Bulldog Print Co's restock, while ensuring rent is paid by its due date. No payment has been made. Invoice blocker #1 was already recorded by Inventory, so no duplicate blocker was added."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:27",
+      "kind": "tool",
+      "agent": "Customer Service",
+      "tool": "save_draft",
+      "args": {
+        "ticket_id": 101,
+        "author": "Customer Service",
+        "recipient": "Tauhid Zaman",
+        "subject": "Update on your Bulldog tee",
+        "body": "Hi Tauhid,\n\nThe Classic Bulldog Tee in size S is currently out of stock. Our specialty supplier is unable to ship a restock while invoice #501 remains unpaid, and human approval for that invoice payment is still pending. We can\u2019t confirm a delivery date yet; we\u2019ll follow up when we have an update.\n\nBest,\nCampus Customs"
+      },
+      "result": {
+        "ok": true,
+        "draft_id": 1,
+        "status": "draft",
+        "sent": false
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:31",
+      "kind": "report",
+      "agent": "Customer Service",
+      "to": "Boss",
+      "report": {
+        "agent": "Customer Service",
+        "summary": "Reviewed ticket #101 and saved a customer message draft for Tauhid Zaman; it was not sent. Recommend keeping the ticket in needs_approval while invoice payment approval is pending and the supplier remains unable to ship.",
+        "database_facts": [
+          "Ticket #101 is for one CC-TEE-WHITE Classic Bulldog Tee in size S; current stock is 0, with 1 wanted and 1 short.",
+          "Invoice #501 is open and overdue; Bulldog Print Co cannot ship while it remains unpaid.",
+          "Approval request #1 for invoice payment is pending."
+        ],
+        "actions_taken": [
+          "Saved customer message draft #1 to Tauhid Zaman. The draft says the size-S tee is out of stock, explains the specialty supplier cannot ship while invoice #501 remains unpaid and human approval is pending, and does not promise a delivery date. It was not sent."
+        ],
+        "approval_requests": [],
+        "needs_human_decision": [
+          "Human decision on pending invoice payment approval request #1."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-06T22:46:36",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "update_ticket_status",
+      "args": {
+        "ticket_id": 101,
+        "status": "needs_approval",
+        "author": "Boss",
+        "note": "Human approval request #1 for invoice 501 ($840) is pending; that unpaid invoice blocks the specialty supplier from shipping the short size-S tee. Customer Service saved draft #1 (not sent). Human recommendation: decide the overdue invoice payment to unblock restocking, preserve funds for $2,400 rent due 2026-09-02, then consider the $8 restock PO after the vendor can ship; the current listed invoice and rent total $3,240 against $3,400 cash ($160 remaining; $152 if the $8 restock is also ordered)."
+      },
+      "result": {
+        "ok": true,
+        "ticket_id": 101,
+        "status": "needs_approval"
+      }
+    }
+  ]
+}

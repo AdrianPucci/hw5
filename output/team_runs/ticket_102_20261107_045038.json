@@ -1,0 +1,779 @@
+{
+  "run_id": "0f4335561bf2",
+  "task": "ticket_102",
+  "ticket_id": 102,
+  "shop_date": "2026-08-31",
+  "started": "2026-11-07T04:50:38",
+  "seconds": 68.2,
+  "model": "gpt-6-luna (Portkey)",
+  "delegations": 2,
+  "model_requests": 17,
+  "error": null,
+  "final_report": {
+    "agent": "Boss",
+    "summary": "Ticket #102 was verified against lease 1 and assigned to Facilities, which confirmed the notice and coordinated an earmark. Rent is due 2026-09-02; no payment request or payment was made, so the ticket is awaiting human approval and the rent-funds issue has been flagged.",
+    "database_facts": [
+      "Shop date is 2026-08-31; lease 1 lists Elm City Properties as landlord and $2,400 monthly rent due 2026-09-02; requester matches landlord.",
+      "Accounting earmarked $2,400 for rent; cash balance is $3,400 and pending payment approvals total $0.",
+      "Cash plan lists overdue invoice #501 for $840 due 2026-08-28 before rent; paying both leaves $160."
+    ],
+    "actions_taken": [
+      "Assigned ticket #102 to Facilities; Facilities verified the notice and delegated earmarking to Accounting (earmark #1).",
+      "Added a Boss note with the cash plan recommendation and flagged rent funding for human review (inbox item #1).",
+      "Set ticket status to needs_approval. No payment request or payment was made; no audit was required because no money was requested."
+    ],
+    "approval_requests": [],
+    "needs_human_decision": [
+      "Decide whether to authorize rent payment and payment priority relative to overdue invoice #501; the cash plan orders the overdue invoice before rent and paying both leaves $160."
+    ]
+  },
+  "activity": [
+    {
+      "time": "2026-11-07T04:50:38",
+      "kind": "start",
+      "agent": "Boss",
+      "task": "Handle ticket #102. Start with ticket_brief, assign it, delegate the work to the right agents, and finish with one recommendation for the human."
+    },
+    {
+      "time": "2026-11-07T04:50:42",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_today",
+      "args": {},
+      "result": {
+        "date_today": "2026-08-31",
+        "notes": null
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 102,
+          "type": "rent_notice",
+          "requester": "Elm City Properties",
+          "subject": "Rent due",
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "lease_id": 1,
+          "invoice_id": null,
+          "status": "open",
+          "notes": "Email: shop rent due in 2 days.",
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "assigned_to": null,
+          "status_reason": null
+        },
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "overdue": false,
+          "requester_matches_landlord": true
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "blockers",
+      "args": {},
+      "result": []
+    },
+    {
+      "time": "2026-11-07T04:50:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "ticket": {
+          "id": 102,
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null
+        },
+        "events": []
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:44",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_queue",
+      "args": {},
+      "result": [
+        {
+          "ticket_id": 101,
+          "type": "customer_order",
+          "subject": "Bulldog tee",
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null,
+          "created_at": "2026-08-31T09:15:00-04:00",
+          "overdue_days": 3,
+          "due_in_days": null,
+          "open_blockers": 0,
+          "why": [
+            "linked invoice #501 is 3 days overdue",
+            "short 1 x CC-TEE-WHITE S"
+          ],
+          "rank": 1
+        },
+        {
+          "ticket_id": 102,
+          "type": "rent_notice",
+          "subject": "Rent due",
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null,
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "overdue_days": 0,
+          "due_in_days": 2,
+          "open_blockers": 0,
+          "why": [
+            "rent due in 2 days"
+          ],
+          "rank": 2
+        },
+        {
+          "ticket_id": 103,
+          "type": "price_override",
+          "subject": "Bulk hoodie discount",
+          "status": "open",
+          "status_reason": null,
+          "assigned_to": null,
+          "created_at": "2026-08-31T16:55:00-04:00",
+          "overdue_days": 0,
+          "due_in_days": null,
+          "open_blockers": 0,
+          "why": [
+            "short 12 x CC-HOOD-NAVY M"
+          ],
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "time": "2026-11-07T04:50:49",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "assign_ticket",
+      "args": {
+        "ticket_id": 102,
+        "agent": "Facilities",
+        "assigned_by": "Boss",
+        "note": "Rent notice concerns lease 1 and the Chapel Street shop space; Facilities owns lease and rent follow-up."
+      },
+      "result": {
+        "ok": true,
+        "ticket_id": 102,
+        "assigned_to": "Facilities"
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:51",
+      "kind": "delegate",
+      "agent": "Boss",
+      "to": "Facilities",
+      "task": "Handle ticket #102 rent notice: verify lease/rent facts already in ticket_brief, assess if human review/funding flag or other action is needed, add relevant ticket note/status recommendation, and report findings/actions. Do not request or approve payment; identify any human decision needed.",
+      "chain": [
+        "Boss"
+      ]
+    },
+    {
+      "time": "2026-11-07T04:50:54",
+      "kind": "tool",
+      "agent": "Facilities",
+      "tool": "get_today",
+      "args": {},
+      "result": {
+        "date_today": "2026-08-31",
+        "notes": null
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:54",
+      "kind": "tool",
+      "agent": "Facilities",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:54",
+      "kind": "tool",
+      "agent": "Facilities",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 102,
+          "type": "rent_notice",
+          "requester": "Elm City Properties",
+          "subject": "Rent due",
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "lease_id": 1,
+          "invoice_id": null,
+          "status": "in_progress",
+          "notes": "Email: shop rent due in 2 days.",
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "assigned_to": "Facilities",
+          "status_reason": null
+        },
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "overdue": false,
+          "requester_matches_landlord": true
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:54",
+      "kind": "tool",
+      "agent": "Facilities",
+      "tool": "rent_check",
+      "args": {},
+      "result": [
+        {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "within_two_weeks": true,
+          "earmark": null
+        }
+      ]
+    },
+    {
+      "time": "2026-11-07T04:50:54",
+      "kind": "tool",
+      "agent": "Facilities",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "ticket": {
+          "id": 102,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Facilities"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T04:50:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Facilities: Rent notice concerns lease 1 and the Chapel Street shop space; Facilities owns lease and rent follow-up."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:50:57",
+      "kind": "delegate",
+      "agent": "Facilities",
+      "to": "Accounting",
+      "task": "For ticket #102, do not request or approve payment. Rent check shows lease 1 (Elm City Properties, $2,400 monthly rent, due 2026-09-02) within 2 weeks and no earmark. Please designate funds for rent if possible using your available process, state they are to be applied on 2026-09-02, and report whether funds can be set aside. If unable, say so so Facilities can flag for human. Avoid duplicate payment request.",
+      "chain": [
+        "Boss",
+        "Facilities"
+      ]
+    },
+    {
+      "time": "2026-11-07T04:51:00",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_today",
+      "args": {},
+      "result": {
+        "date_today": "2026-08-31",
+        "notes": null
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:00",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_team_status",
+      "args": {},
+      "result": {
+        "halted": false
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:00",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 102,
+          "type": "rent_notice",
+          "requester": "Elm City Properties",
+          "subject": "Rent due",
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "lease_id": 1,
+          "invoice_id": null,
+          "status": "in_progress",
+          "notes": "Email: shop rent due in 2 days.",
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "assigned_to": "Facilities",
+          "status_reason": null
+        },
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "overdue": false,
+          "requester_matches_landlord": true
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:00",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "rent_check",
+      "args": {},
+      "result": [
+        {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "within_two_weeks": true,
+          "earmark": null
+        }
+      ]
+    },
+    {
+      "time": "2026-11-07T04:51:00",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "ticket": {
+          "id": 102,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Facilities"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T04:50:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Facilities: Rent notice concerns lease 1 and the Chapel Street shop space; Facilities owns lease and rent follow-up."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:03",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "list_approval_requests",
+      "args": {
+        "status": "pending"
+      },
+      "result": []
+    },
+    {
+      "time": "2026-11-07T04:51:03",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "get_cash_balance",
+      "args": {},
+      "result": {
+        "account": "checking",
+        "balance": 3400.0,
+        "as_of": "2026-08-31",
+        "pending_requests_total": 0,
+        "balance_if_all_pending_approved": 3400.0
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:03",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "cash_plan",
+      "args": {},
+      "result": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3240.0,
+        "cash_left_if_all_paid": 160.0,
+        "short_by": 0,
+        "earmarked_for_rent": 0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "earmarked": false,
+            "cash_left_after": 160.0,
+            "affordable": true
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:06",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "earmark_rent_funds",
+      "args": {
+        "lease_id": 1,
+        "requested_by": "Accounting",
+        "ticket_id": 102
+      },
+      "result": {
+        "ok": true,
+        "earmark_id": 1,
+        "amount": 2400.0,
+        "apply_on": "2026-09-02",
+        "cash_balance": 3400.0,
+        "free_cash_after": 1000.0
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:09",
+      "kind": "tool",
+      "agent": "Accounting",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 102,
+        "author": "Accounting",
+        "note": "Earmarked $2,400 for lease 1 rent, to be applied 2026-09-02 (earmark #1). Cash balance is $3,400; free cash after earmark is $1,000. This only designates funds\u2014no payment was requested or made; payment still requires human approval."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:15",
+      "kind": "report",
+      "agent": "Accounting",
+      "to": "Facilities",
+      "report": {
+        "agent": "Accounting",
+        "summary": "Rent funds could be set aside: $2,400 is earmarked for lease 1, to be applied on 2026-09-02. No payment request was created and no payment was made; a human approval is still required to pay rent.",
+        "database_facts": [
+          "Shop date is 2026-08-31; lease 1 rent of $2,400 is due 2026-09-02 and is within two weeks.",
+          "Cash balance is $3,400.00, with $0 pending requests; cash plan shows total obligations of $3,240.00 and $160.00 left if all listed items are paid.",
+          "Rent check showed no prior earmark for lease 1."
+        ],
+        "actions_taken": [
+          "Created earmark #1 for $2,400.00, applicable 2026-09-02.",
+          "Added a note to ticket #102 documenting the earmark and that payment still requires human approval."
+        ],
+        "approval_requests": [],
+        "needs_human_decision": [
+          "Human approval is required before any rent payment can be made."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:20",
+      "kind": "tool",
+      "agent": "Facilities",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 102,
+        "author": "Facilities",
+        "note": "Facilities verified the notice against lease 1: requester Elm City Properties matches the landlord; monthly rent is $2,400 and next due date is 2026-09-02 (2 days after shop date 2026-08-31). Accounting reports $2,400 earmarked for 2026-09-02; no payment request or payment was made. No rent-funds flag is needed because funds were set aside. Human approval is required before any payment; no payment request was made per instruction."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:24",
+      "kind": "report",
+      "agent": "Facilities",
+      "to": "Boss",
+      "report": {
+        "agent": "Facilities",
+        "summary": "Verified ticket #102 against lease 1: the notice matches the landlord, rent amount and due date. Accounting earmarked funds for the due date; no rent payment request or payment was made, and human approval is required before payment.",
+        "database_facts": [
+          "Shop date is 2026-08-31.",
+          "Lease 1 lists Elm City Properties as landlord, monthly rent of $2,400, and next due date 2026-09-02 (2 days away); the notice requester matches the landlord.",
+          "Rent check showed the lease is within the 14-day window and initially had no earmark.",
+          "Accounting reports $2,400 earmarked for lease 1, applicable 2026-09-02; no payment request was created and no payment was made."
+        ],
+        "actions_taken": [
+          "Delegated to Accounting to designate rent funds; Accounting created earmark #1.",
+          "Added Facilities note documenting verification, earmark, and the requirement for human approval before payment.",
+          "No rent-funds flag was needed because funds could be set aside. No status change or payment request was made."
+        ],
+        "approval_requests": [],
+        "needs_human_decision": [
+          "Human approval is required before rent can be paid; no payment request was created under the instruction not to request payment."
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:30",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_brief",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "today": "2026-08-31",
+        "ticket": {
+          "id": 102,
+          "type": "rent_notice",
+          "requester": "Elm City Properties",
+          "subject": "Rent due",
+          "sku": null,
+          "size": null,
+          "qty": null,
+          "lease_id": 1,
+          "invoice_id": null,
+          "status": "in_progress",
+          "notes": "Email: shop rent due in 2 days.",
+          "created_at": "2026-08-31T11:05:00-04:00",
+          "assigned_to": "Facilities",
+          "status_reason": null
+        },
+        "lease": {
+          "id": 1,
+          "space_name": "Chapel Street shop",
+          "landlord": "Elm City Properties",
+          "monthly_rent": 2400.0,
+          "next_due": "2026-09-02",
+          "notes": null,
+          "days_until_due": 2,
+          "overdue": false,
+          "requester_matches_landlord": true
+        },
+        "approval_requests": []
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:30",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "get_cash_balance",
+      "args": {},
+      "result": {
+        "account": "checking",
+        "balance": 3400.0,
+        "as_of": "2026-08-31",
+        "pending_requests_total": 0,
+        "balance_if_all_pending_approved": 3400.0
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:30",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "list_approval_requests",
+      "args": {
+        "status": "pending"
+      },
+      "result": []
+    },
+    {
+      "time": "2026-11-07T04:51:30",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "ticket_timeline",
+      "args": {
+        "ticket_id": 102
+      },
+      "result": {
+        "ticket": {
+          "id": 102,
+          "status": "in_progress",
+          "status_reason": null,
+          "assigned_to": "Facilities"
+        },
+        "events": [
+          {
+            "at": "2026-08-31T04:50:49",
+            "what": "note",
+            "by": "Boss",
+            "detail": "Assigned to Facilities: Rent notice concerns lease 1 and the Chapel Street shop space; Facilities owns lease and rent follow-up."
+          },
+          {
+            "at": "2026-08-31T04:51:06",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Earmarked $2,400.00 for rent due 2026-09-02 (earmark #1). No money moved."
+          },
+          {
+            "at": "2026-08-31T04:51:09",
+            "what": "note",
+            "by": "Accounting",
+            "detail": "Earmarked $2,400 for lease 1 rent, to be applied 2026-09-02 (earmark #1). Cash balance is $3,400; free cash after earmark is $1,000. This only designates funds\u2014no payment was requested or made; payment still requires human approval."
+          },
+          {
+            "at": "2026-08-31T04:51:20",
+            "what": "note",
+            "by": "Facilities",
+            "detail": "Facilities verified the notice against lease 1: requester Elm City Properties matches the landlord; monthly rent is $2,400 and next due date is 2026-09-02 (2 days after shop date 2026-08-31). Accounting reports $2,400 earmarked for 2026-09-02; no payment request or payment was made. No rent-funds flag is needed because funds were set aside. Human approval is required before any payment; no payment request was made per instruction."
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:30",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "cash_plan",
+      "args": {},
+      "result": {
+        "today": "2026-08-31",
+        "cash_balance": 3400.0,
+        "total_owed": 3240.0,
+        "cash_left_if_all_paid": 160.0,
+        "short_by": 0,
+        "earmarked_for_rent": 2400.0,
+        "items": [
+          {
+            "item": "Invoice #501 to Bulldog Print Co (Rush reprint CC-TEE-WHITE S)",
+            "due": "2026-08-28",
+            "amount": 840.0,
+            "overdue": true,
+            "approval_request": null,
+            "cash_left_after": 2560.0,
+            "affordable": true
+          },
+          {
+            "item": "Rent: Chapel Street shop (Elm City Properties)",
+            "due": "2026-09-02",
+            "amount": 2400.0,
+            "overdue": false,
+            "approval_request": null,
+            "earmarked": true,
+            "cash_left_after": 160.0,
+            "affordable": true
+          }
+        ]
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:39",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "add_ticket_note",
+      "args": {
+        "ticket_id": 102,
+        "author": "Boss",
+        "note": "Verified lease 1 matches the notice: $2,400 rent due 2026-09-02; $2,400 is earmarked, but no payment request or payment exists. Cash plan shows $3,400 cash, with overdue invoice #501 ($840, due 2026-08-28) before rent; paying both leaves $160. Human should decide payment priority and approve any payment."
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:39",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "flag_for_human",
+      "args": {
+        "author": "Boss",
+        "category": "rent_funds",
+        "ticket_id": 102,
+        "message": "Lease 1 rent of $2,400 is due 2026-09-02 and $2,400 is earmarked, but no payment request has been created. Please decide whether to authorize rent payment and coordinate priority: cash plan lists overdue invoice #501 ($840, due 2026-08-28) before rent; paying both leaves $160 from $3,400."
+      },
+      "result": {
+        "ok": true,
+        "inbox_id": 1,
+        "status": "open"
+      }
+    },
+    {
+      "time": "2026-11-07T04:51:42",
+      "kind": "tool",
+      "agent": "Boss",
+      "tool": "update_ticket_status",
+      "args": {
+        "ticket_id": 102,
+        "status": "needs_approval",
+        "author": "Boss",
+        "note": "Rent is due 2026-09-02 and earmarked, but payment still requires human authorization. Human should determine whether to pay rent and its priority relative to overdue invoice #501; cash plan says paying both leaves $160."
+      },
+      "result": {
+        "ok": true,
+        "ticket_id": 102,
+        "status": "needs_approval"
+      }
+    }
+  ]
+}

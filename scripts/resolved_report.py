@@ -78,28 +78,25 @@ def contributions(runs: list[dict]) -> dict[str, dict]:
 
 
 def screenshot(tid: int) -> str | None:
+    """Full-size picture of the board on one ticket, via headless Edge started by PowerShell
+    (Start-Process -Wait was the reliable way on this computer)."""
     edge = next((p for p in EDGE if p.exists()), None)
     if edge is None:
         return None
     SHOTS.mkdir(parents=True, exist_ok=True)
     target = SHOTS / f"ticket_{tid}.png"
     target.unlink(missing_ok=True)
-    # A throwaway Edge profile outside OneDrive (a profile inside OneDrive kept Edge from exiting).
-    profile = Path(tempfile.mkdtemp(prefix="desk-shot-"))
-    proc = subprocess.Popen([str(edge), "--headless=new", "--disable-gpu", "--no-first-run", f"--user-data-dir={profile}",
-                             "--hide-scrollbars", "--virtual-time-budget=9000", "--window-size=1440,1500",
-                             f"--screenshot={target}", BOARD_URL.format(tid)])
+    profile = Path(tempfile.mkdtemp(prefix="desk-shot-"))  # outside OneDrive
+    args = ",".join(f"'{a}'" for a in [
+        "--headless=new", "--disable-gpu", "--no-first-run", f'--user-data-dir="{profile}"', "--hide-scrollbars",
+        "--virtual-time-budget=9000", "--window-size=1440,1500", f'--screenshot="{target}"', BOARD_URL.format(tid)])
+    cmd = f"Start-Process -FilePath '{edge}' -ArgumentList {args} -Wait -WindowStyle Hidden"
     try:
-        for _ in range(90):  # wait up to 45 s for the picture
-            if target.exists() and target.stat().st_size > 0:
-                time.sleep(1)
-                break
-            time.sleep(0.5)
-    finally:
-        proc.kill()
-        subprocess.run(["taskkill", "/F", "/T", "/PID", str(proc.pid)], capture_output=True)
-        shutil.rmtree(profile, ignore_errors=True)
-    return f"resolved_board/{target.name}" if target.exists() else None
+        subprocess.run(["powershell.exe", "-NoProfile", "-Command", cmd], timeout=90, capture_output=True)
+    except subprocess.TimeoutExpired:
+        pass
+    shutil.rmtree(profile, ignore_errors=True)
+    return f"resolved_board/{target.name}" if target.exists() and target.stat().st_size > 0 else None
 
 
 def main() -> int:

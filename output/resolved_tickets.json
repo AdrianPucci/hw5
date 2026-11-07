@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-07T09:46:01",
+  "generated_at": "2026-11-07T09:57:22",
   "since_reset": "2026-11-07T09:32:30",
   "model": "gpt-6-luna (Portkey)",
   "cash": {
     "starting_balance": 3400.0,
-    "paid_out": 0,
-    "ending_balance": 3400.0,
-    "start_minus_payments": 3400.0,
+    "paid_out": 3240.0,
+    "ending_balance": 160.0,
+    "start_minus_payments": 160.0,
     "matches_cash_accounts": true
   },
   "tickets": [
@@ -14,12 +14,19 @@
       "id": 101,
       "subject": "Bulldog tee",
       "requester": "Tauhid Zaman",
-      "final_status": "needs_approval",
+      "final_status": "in_progress",
       "resolved_at": null,
       "short_outcome": "Ticket #101 requests one Bulldog tee in size S, but none are in stock. Inventory found the only suitable vendor cannot ship while invoice #501 remains unpaid; Accounting has requested human approval #1 for that overdue invoice, so the ticket correctly remains in needs_approval and blocked pending the invoice decision.",
       "money": {
-        "paid": 0,
-        "payments": []
+        "paid": 840.0,
+        "payments": [
+          {
+            "payment": 1,
+            "kind": "invoice",
+            "amount": 840.0,
+            "approved_by": "Adrian"
+          }
+        ]
       },
       "agents": {
         "Boss": {
@@ -96,9 +103,9 @@
           "kind": "invoice_payment",
           "amount": 840.0,
           "price": null,
-          "decision": "pending",
-          "decided_by": null,
-          "decided_at": null
+          "decision": "approved",
+          "decided_by": "Adrian",
+          "decided_at": "2026-08-31T09:55:23"
         }
       ],
       "drafts": [],
@@ -117,17 +124,24 @@
       "id": 102,
       "subject": "Rent due",
       "requester": "Elm City Properties",
-      "final_status": "needs_approval",
-      "resolved_at": null,
-      "short_outcome": "Facilities verified that the rent notice matches lease 1. Accounting created pending human approval request #2 for $2,400; the ticket is in needs_approval, and the audit passed with no payment made.",
+      "final_status": "resolved",
+      "resolved_at": "2026-08-31T09:56:08",
+      "short_outcome": "Confirmed Facilities as the owner; their lease verification and Accounting's payment request were already documented, so I did not repeat delegation. Request #2 was approved and its follow-up is recorded; the ticket is resolved, with a rent-funding item flagged for the next rent obligation.",
       "money": {
-        "paid": 0,
-        "payments": []
+        "paid": 2400.0,
+        "payments": [
+          {
+            "payment": 2,
+            "kind": "rent",
+            "amount": 2400.0,
+            "approved_by": "Adrian"
+          }
+        ]
       },
       "agents": {
         "Boss": {
           "worked": true,
-          "runs": 1,
+          "runs": 2,
           "delegated_to": [
             "Facilities",
             "Accounting"
@@ -141,9 +155,14 @@
             "cash_plan",
             "staffing_status",
             "audit_check",
-            "add_ticket_note"
+            "add_ticket_note",
+            "tickets_ready_for_followup",
+            "get_today",
+            "mark_followed_up",
+            "update_ticket_status",
+            "flag_for_human"
           ],
-          "last_report": "Facilities verified that the rent notice matches lease 1. Accounting created pending human approval request #2 for $2,400; the ticket is in needs_approval, and the audit passed with no payment made."
+          "last_report": "Confirmed Facilities as the owner; their lease verification and Accounting's payment request were already documented, so I did not repeat delegation. Request #2 was approved and its follow-up is recorded; the ticket is resolved, with a rent-funding item flagged for the next rent obligation."
         },
         "Inventory": {
           "worked": false,
@@ -202,9 +221,9 @@
           "kind": "rent_payment",
           "amount": 2400.0,
           "price": null,
-          "decision": "pending",
-          "decided_by": null,
-          "decided_at": null
+          "decision": "approved",
+          "decided_by": "Adrian",
+          "decided_at": "2026-08-31T09:55:23"
         }
       ],
       "drafts": [],
@@ -216,6 +235,12 @@
           "started": "2026-11-07T09:34:27",
           "delegations": 3,
           "model_calls": 24
+        },
+        {
+          "run_id": "8e26726cf93f",
+          "started": "2026-11-07T09:55:43",
+          "delegations": 0,
+          "model_calls": 6
         }
       ]
     },
@@ -223,7 +248,7 @@
       "id": 103,
       "subject": "Bulk hoodie discount",
       "requester": "Yale AI Club",
-      "final_status": "needs_approval",
+      "final_status": "in_progress",
       "resolved_at": null,
       "short_outcome": "Ticket #103 requests 20 navy M hoodies, but only 8 are held and 12 remain unavailable. Price approval #3 for $49.30 each is pending; restock is blocked by overdue invoice #501, shared with ticket #101, and no purchase order was requested. Ticket remains needs_approval, with customer draft #1 saved but unsent.",
       "money": {
@@ -319,9 +344,9 @@
           "kind": "price_override",
           "amount": 0.0,
           "price": "20 x CC-HOOD-NAVY M at $49.30",
-          "decision": "pending",
-          "decided_by": null,
-          "decided_at": null
+          "decision": "approved",
+          "decided_by": "Adrian",
+          "decided_at": "2026-08-31T09:55:24"
         }
       ],
       "drafts": [

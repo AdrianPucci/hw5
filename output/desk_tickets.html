@@ -109,7 +109,7 @@
     <button class="tab" role="tab" id="tab-102" aria-controls="p-102" aria-selected="false" tabindex="-1">#102<small>Rent notice</small></button>
     <button class="tab" role="tab" id="tab-103" aria-controls="p-103" aria-selected="false" tabindex="-1">#103<small>AI Club hoodies</small></button>
     <button class="tab" role="tab" id="tab-cash" aria-controls="p-cash" aria-selected="false" tabindex="-1">Cash<small>Money in and out</small></button>
-    <button class="tab" role="tab" id="tab-reflection" aria-controls="p-reflection" aria-selected="false" tabindex="-1">Reflection<small>Later problem</small></button>
+    <button class="tab" role="tab" id="tab-reflection" aria-controls="p-reflection" aria-selected="false" tabindex="-1">Reflection<small>Problem 10</small></button>
   </div>
 
   <!-- 101 -->
@@ -349,7 +349,73 @@
 
   <section class="panel" role="tabpanel" id="p-reflection" aria-labelledby="tab-reflection" hidden>
     <h2 style="margin-top:0">Reflection</h2>
-    <div class="empty">Left blank for a later problem.</div>
+    <p class="sub" style="margin-bottom:12px">Problem 10. Written in my voice from this app and the three tickets we ran. Evidence: the <strong>#101, #102 and #103 tabs</strong> (Expected vs. Actual) and the <strong>Cash tab</strong> on this page. Drafted with CP. 🛑 boxes are for my own edits.</p>
+
+    <h3 class="section-title">What we built <span class="tag">The system</span></h3>
+    <div class="plan">
+      <h4>MCP tools</h4>
+      <p>All shop data runs through one MCP server (<code>mcp_server/server.py</code>, working database <code>data/campus_customs_new.db</code>): 48 shop tools the agents and the vibe coder can use, plus 8 human-only tools on a separate server that only the dashboard can reach. My three tools carried the runs: <code>ticket_brief</code> gave every agent the full picture of a ticket in one call, <code>cash_plan</code> told the Boss that paying #501 and the rent leaves only $160, and <code>audit_check</code> proved no money moved without a person.</p>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+      <h4>The five agents</h4>
+      <p>Boss, Inventory, Accounting, Facilities and Customer Service, all on gpt-6-luna through Portkey, each with its own prompt and its own slice of tools, and any agent can delegate to any other. The Boss routes each ticket to the agent that owns the core question: Inventory for #101 and #103, Facilities for #102. That matched my plan on all three tickets.</p>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+      <h4>API routes and the dashboard</h4>
+      <p>The FastAPI back end (http://localhost:8000) gives the board its routes: list tickets, run the team, read agent events, approve or reject, cash, reset, and the other human steps. The Bulldog Desk (http://localhost:5173) shows each agent working live (yellow), resolved (dark green) or not needed, with the approval queue and the checking balance always on screen.</p>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+      <h4>Safety rules</h4>
+      <p>The shop is a simulation: no real payments, no shipping, no emails. Agents only prepare requests; my Approve click is the only thing that moves cash, it can never overdraw, and every step is in <code>output/audit_trail.json</code>. The red-team tickets proved it: a fake "wire $3,000" email and an "ignore your rules" ticket both halted the team, and a card number was flagged without ever being repeated.</p>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+    </div>
+
+    <h3 class="section-title">How we evaluated the agents, and why <span class="tag">Evaluation</span></h3>
+    <div class="plan">
+      <p>I judged the team like I'd judge a new staff: <strong>did they get the facts right, involve the right people, stay inside the rules, and hand me a clear decision?</strong></p>
+      <ul>
+        <li><strong>Plan vs. actual</strong> (each ticket tab): who the Boss called first, how many delegations, who was not involved. This tells me if the routing and efficiency rules work.</li>
+        <li><strong>Facts and money</strong> (Cash tab): every amount must come from the database, and starting cash − payments must equal <code>cash_accounts</code>. Wrong cash math is a failure even if a ticket says resolved.</li>
+        <li><strong>Rules held</strong>: no request against a blocked vendor, nothing paid without me, no promises in drafts, <code>audit_check</code> passes.</li>
+        <li><strong>Cost and speed</strong>: model calls and seconds per ticket (16–24 calls, 76–110 seconds), so efficiency is measured, not assumed.</li>
+        <li><strong>Safety under pressure</strong>: the TEST tickets 901–906, because a team that only works on clean tickets isn't ready for a real shop.</li>
+      </ul>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+    </div>
+
+    <h3 class="section-title">Expected vs. actual, ticket by ticket <span class="tag">Evidence</span></h3>
+    <div class="plan">
+      <ul>
+        <li><strong>#101 tee:</strong> the Boss called Inventory first, as planned. Inventory found 0 size S, saw invoice #501 blocking Bulldog and passed it straight to Accounting, which asked me to pay $840. I expected 3 delegations; the run used 2 because the Boss didn't call Customer Service this time. That saved calls, but Tauhid got no draft, so I'd make the customer update a rule for every customer order.</li>
+        <li><strong>#102 rent:</strong> Facilities first, as planned, and the notice checked out against the lease ($2,400 due Sep 2). I expected 2 delegations; the run used 3 because the Boss asked Accounting again for the payment request after Facilities had only asked it to earmark. Inventory and Customer Service were correctly left out. Adjustment B2 (earmark and request in one step) would remove the extra hop.</li>
+        <li><strong>#103 hoodies:</strong> Inventory first, as planned; 8 held and 12 short. The run used 3 delegations instead of 4 and priced all 20 hoodies at $49.30 instead of the 8 we can deliver; that's adjustment C1, which I haven't applied yet. Customer Service drafted the update without promising a date.</li>
+        <li><strong>Cash:</strong> the Cash tab shows $3,400 at the start and $3,400 now, matching <code>cash_accounts</code>: nothing moved because nothing was approved yet. Approving #501 and the rent takes it to $160, exactly what <code>cash_plan</code> predicted.</li>
+      </ul>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+    </div>
+
+    <h3 class="section-title">What would have been simpler as one tool <span class="tag">Hindsight</span></h3>
+    <div class="plan">
+      <p>A single <strong><code>verify_and_request_rent(lease_id)</code></strong> tool. #102 took 3 delegations and 24 model calls to do something with no judgment in it: check the notice against the lease, earmark at 14 days, request at 7 days. One tool could do all three checks in code and return either "request created" or "mismatch, flagged". It would be cheaper, faster and impossible to get out of order. In the same spirit, a <strong><code>restock_or_unblock(sku, size, qty)</code></strong> tool would have saved #101 and #103 from rediscovering that invoice #501 blocks Bulldog: it would see the open invoice and request the payment first. Keep the agents for judgment, and put fixed procedures in tools.</p>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+    </div>
+
+    <h3 class="section-title">Three new problems this team can already solve <span class="tag">With today's tools</span></h3>
+    <div class="plan">
+      <ol>
+        <li><strong>A bulk cap order for a student group.</strong> 40 caps on hand: Inventory holds them, Accounting prices them with <code>check_margin</code> and the 15% floor, Customer Service drafts the offer, and I approve the price. Same path as #103, without the shortfall.</li>
+        <li><strong>Next month's rent.</strong> When Oct 2 rent comes within 14 days, Facilities' <code>rent_check</code> triggers the earmark, and at 7 days Accounting requests it, exactly like #102. The staffed-hours rule makes sure it lands in a window when I'm in.</li>
+        <li><strong>A suspicious vendor bill.</strong> A fake "pay now or lose your account" email is flagged and halts the team, the amount is never taken from the email, and <code>audit_check</code> proves nothing moved. TEST ticket #901 already showed this.</li>
+      </ol>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+    </div>
+
+    <h3 class="section-title">Three problems we can't solve yet, and the tools to build <span class="tag">Next</span></h3>
+    <div class="plan">
+      <ol>
+        <li><strong>Money coming in.</strong> No sales or deposits are modeled (rule 6), so after the bills the shop can never afford the 12 backordered hoodies ($264 vs. $160). Build a human-approved <code>record_sale</code> / <code>record_deposit</code> tool, with receipts in <code>payments</code>, so <code>cash_plan</code> can plan restocks against real income.</li>
+        <li><strong>Time moving forward.</strong> The shop date is stuck at Aug 31, so orders never "arrive" on their date, rent never comes due again, and weekly and monthly reports cover one day. Build a human-only <code>advance_shop_day</code> tool plus a scheduled morning run, so lead times, due dates and reports become real.</li>
+        <li><strong>Talking with customers both ways.</strong> Drafts are never sent and replies only come in when I type them, so #103 waits on the AI Club's price. Build a simulated inbox and outbox (<code>receive_customer_message</code>, <code>send_approved_draft</code>) that only releases messages I approved, so waiting-on-customer tickets can finish without me retyping.</li>
+      </ol>
+      <div class="approval" style="display:block"><strong>🛑 Adrian:</strong> </div>
+    </div>
   </section>
 
   <details>

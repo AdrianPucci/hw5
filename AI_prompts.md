@@ -1210,3 +1210,25 @@ prob b part 2: on the cash tab on the same output/desk_ticket.html, itemize the 
 **Assistant response:**
 
 Wrote `scripts/cash_tab.py`, which reads the database (read-only) and fills the Cash tab of `output/desk_tickets.html`: 1) the starting balance after the reset (from the original database), 2) for each ticket, every payment or purchase (type, amount, date, who approved it, why, and the balance after), anything still waiting, and when the ticket resolved, 3) the ending balance from `cash_accounts`, with a check that start − payments = ending, plus a full ledger. Right now nothing has been approved: $3,400 − $0 = $3,400, which matches `cash_accounts`. Tested on a copy with test approvals ($840 + $2,400 + $8 → $152, matching, with #102's resolve time shown). Run the script again after Adrian approves and the tickets resolve.
+
+### Prompts 116–125 (sent close together near the deadline)
+
+**User prompts (word for word, in order):**
+
+1. Wrong cash math will be back for business, even if the board shows the ticket resolved. Also save: 1. output/resolved_tickets.json for each ticket: id, final status, short outcome, what each agent contributed, and the human approvals 2. output/resolved_board.html - a page one can double click with a shcreenshot of my react board for each resolved ticket (101,102, and 103)
+2. Append real runs to output/audit_trials.json
+3. Add MPC tools, the five agents, and the API Routes and Dashboard and the saftey rules. with space for my input
+4. Problem 10: open output/desk_tickets.html and fill in the reflection tab. Answer in my vibe with and be detailed and thorough
+5. show how we eveluated the preovormance of the agents on tickets and why, also for each ticket how die the actual compare to the expected plan we wrokte earlier. What would have peen simpler as one of the agent tools and why, then describe why three new problems camus customs may face that this agent team could solve with the tools we built. Describe three new problems we may not be aboel to solve yet and what tools we could build to fix them.
+6. Tie every answer to this app and the three tickets we ran. Use the ticket tabs and cash tab on the same page as your evidence.
+7. push to the Github repository so graders can colone it. give me the url to post for my assignment
+8. put it in output/github_url.txt
+9. Don't push my .env to github repo do include bot database files under data/
+10. [Screenshot of the expected repo layout: hw5/ with AI_prompts.md, requirements.txt, .env.example, .gitignore, .mcp.json, README.md, data/ (campus_customs.db, campus_customs_new.db), mcp_server/ (server.py, README.md), frontend/, backend/ (main.py, models.py, prompts/ with the 5 agent files), output/ (harness.md, mcp_smoke.json, desk_tickets.html, design.md, resolved_tickets.json, resolved_board.html, audit_trail.json, github_url.txt)]
+11. This is the expected file layout. can I get the url to post as soon as you are ready? I have only 10 minutes to finish. Do the best you can! 🙂
+12. thanks
+13. [Screenshot: the README should explain copying the original DB to the working copy for a clean run, starting the MCP server, the FastAPI back end and the React board, and resetting the DB before a full three-ticket run.]
+
+**Assistant response:**
+
+Cash math is checked in code: `scripts/cash_tab.py` and `scripts/resolved_report.py` stop if start − payments ≠ `cash_accounts`. Wrote `scripts/resolved_report.py` (builds `output/resolved_tickets.json` and `output/resolved_board.html`; the tickets are still `needs_approval` because Adrian hasn't approved yet, and the headless screenshots still need fixing). Real runs already append to `output/audit_trail.json` (503+ entries, never wiped). Matched the required layout: renamed `mcp_server/mcp_server.py` to `mcp_server/server.py` (all references updated), added a root `requirements.txt`, and rewrote the README's run steps (clean copy, MCP server, back end, board, reset before a full run). Filled the Reflection tab in Adrian's voice with evidence from the ticket and Cash tabs: what we built (MCP tools, agents, routes and dashboard, safety) with 🛑 boxes, how we evaluated, expected vs. actual per ticket, what would be simpler as one tool, 3 problems we can solve, and 3 we can't yet, with the tools to build. Created the public repo and pushed: **https://github.com/AdrianPucci/hw5** (in `output/github_url.txt`); `.env` is excluded and both databases are included.

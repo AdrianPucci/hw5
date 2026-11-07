@@ -49,18 +49,50 @@ AI_prompts.md         log of every prompt given to the AI coding assistant
 
 Not in this repo on purpose (see `.gitignore`): `data/` (the `campus_customs.db` database and its working copy) and `.env` (settings). The Portkey key is never stored in the repo.
 
-## Setup
+## Run it
 
-1. Put the original `campus_customs.db` in `data/`, then make the working copy:
-   `python scripts/reset_db.py`
-2. Copy `.env.example` to `.env`. Set `PORTKEY_API_KEY` there or as an environment variable.
-3. MCP server:
-   ```
-   cd mcp
-   python -m venv .venv
-   .venv\Scripts\python.exe -m pip install -r requirements.txt
-   .venv\Scripts\python.exe server.py --http      # http://127.0.0.1:8002/mcp
-   ```
+Windows note: PowerShell scripts are disabled on the build machine, so commands call each venv's Python directly.
+
+**1. Get a clean working database** (whenever you want a fresh run, and always before a full three-ticket run): copy the original over the working copy. The agents only ever touch the copy.
+
+```
+python scripts/reset_db.py        # copies data/campus_customs.db -> data/campus_customs_new.db
+```
+
+**2. Settings:** copy `.env.example` to `.env`. Set `PORTKEY_API_KEY` (in `.env` or as an environment variable). Every agent uses `gpt-6-luna` through Portkey.
+
+**3. Start the MCP server** (the only part that opens the database). The back end also loads it in-process, so this step is only needed for a vibe coder or other MCP clients (`.mcp.json`):
+
+```
+cd mcp_server
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe server.py              # stdio (or --http for http://127.0.0.1:8002/mcp)
+```
+
+**4. Start the FastAPI back end** (http://localhost:8000):
+
+```
+cd backend
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r ..equirements.txt
+.venv\Scripts\python.exe -m uvicorn main:app --reload --port 8000
+```
+
+**5. Start the React board** (http://localhost:5173):
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+**6. Full three-ticket run:** reset first (the board's **Reset** button or `POST /api/reset`; the starting balance is $3,400), then pick #101, #102 and #103 on the board and press **Start the team** for each. Approve or reject what the agents prepare in **Needs your OK**, do the other human steps, and run a ticket again to follow up until it resolves. Then:
+
+```
+python scripts/cash_tab.py          # Cash tab in output/desk_tickets.html (start - payments must equal cash_accounts)
+python scripts/resolved_report.py   # output/resolved_tickets.json + output/resolved_board.html
+```
 
 ## Shop rules
 

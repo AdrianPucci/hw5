@@ -1248,3 +1248,15 @@ The back end had stopped after the file rename and wouldn't start: one line in `
 **User prompts:** "we have 6 minutes to finish" · "url is posted"
 
 **Assistant response:** Pushed the fixes and the updated Cash tab to the posted URL, https://github.com/AdrianPucci/hw5.
+
+### Prompt 129
+
+**User prompt:**
+
+when you are done, please add these responses to my harness md file for the blank items for Adrian: 
+
+[Pasted: 27 🛑 Adrian answers, mostly the same 20 from Prompt 114 plus new ones for the database tables, the 3 tools, testing the tools, security and approval controls, human-only tools and safety controls]
+
+**Assistant response:**
+
+Filled the blank 🛑 Adrian cells in `output/harness.md` with the new answers, word for word (only key phrases bolded): the database overview (added under the existing overview), Adrian's 3 tools, the smoke test, the Problem 4 security finding, the human-only MCP server, and section 9 Safety. The other answers were already in place from Prompt 114, so they weren't added twice. One cell at the end of section 7 stays empty (no new answer matched it). Refreshed the view and pushed.

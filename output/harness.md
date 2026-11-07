@@ -11,6 +11,8 @@ The agents work on a **copy**, `data/campus_customs_new.db`. The original, `data
 ### 🛑 Adrian's overview: the 9 tables
 
 🛑 **Adrian:** Each table is very important to **organizing, prioritizing and balancing** the **cashflow and inventory tickets**
+
+🛑 **Adrian:** Each table supports **a different part of the business process** and gives the agents the information needed to make decisions. Together they help **organize work, maintain inventory levels, track cash flow, and provide accountability** throughout the system.
 See notes below on why each table matters
 ---
 
@@ -416,7 +418,7 @@ All three are **read-only** and use **only database facts** (the data rule in se
 | `cash_plan()` | **Better decisions** | Every bill in the database (open invoices, each lease's next rent, requested purchase orders) in due-date order, with **cash left after each one** and whether it's affordable. No what-if items. | $3,400 − invoice $840 = $2,560 − rent $2,400 = **$160**. |
 | `audit_check()` | **Checks and balances** | Five checks: cash adds up (starting cash from the **original** database − payments = balance), no negative balance, every payment has a human approver, every payment matches an approved request, every paid invoice has a payment. `ok` is true only if all pass. | At the start: all 5 pass. |
 
-🛑 **Adrian:**
+🛑 **Adrian:** I wanted tools that could **quickly summarize key information** without requiring agents to search multiple tables. These tools help improve decision making, **reduce duplicate work**, and provide **additional checks** on financial and operational activities.
 
 **How the rules are built in:**
 
@@ -437,7 +439,7 @@ All three are **read-only** and use **only database facts** (the data rule in se
 
 **Smoke test through the vibe coder's connection (Problem 3):** `scripts/mcp_smoke.py` starts the server from `.mcp.json` (stdio, the same way the vibe coder connects) and calls each tool on the working database. Each entry in **`output/mcp_smoke.json`** holds Adrian's prompts, the tool name and arguments, the full tool output, the same values read with plain SQL straight from `data/campus_customs_new.db`, and a value-by-value match. Result: **5 of 5 calls passed** (`ticket_brief` on 101, 102 and 103, `cash_plan`, `audit_check`), **37 of 37 values match the database**, and the database was unchanged.
 
-🛑 **Adrian:**
+🛑 **Adrian:** It was important to **test these tools independently** to verify they return the same information found in the database. This helps confirm the agents are working from **accurate data** and not introducing assumptions.
 
 **Problem 4: the vibe coder calls each tool.** With the session running in the `HMW 5` folder, Claude Code loaded `campus-customs` from `.mcp.json` (28 tools available as `mcp__campus-customs__*`) and called `ticket_brief` (101, 102, 103), `cash_plan` and `audit_check` itself. **5 of 5 calls passed, 37 of 37 values match `data/campus_customs_new.db`.** The evidence is in `output/mcp_smoke.json` under `problem_4_vibe_coder_test` (Adrian's prompts, tool name, output, database values, value-by-value match).
 
@@ -445,7 +447,7 @@ All three are **read-only** and use **only database facts** (the data rule in se
 
 ✅ **Fixed (Prompt 71, CP's recommendation, Adrian to confirm):** `approve_request`, `reject_request` and `resume_team` are now plain Python functions, **not MCP tools**. The vibe coder sees 43 tools and none of them can approve; only the dashboard (backend) calls these functions for the human.
 
-🛑 **Adrian:**
+🛑 **Adrian:** **Security and approval controls** are some of the most important parts of this project. I wanted to make sure payments, approvals, and financial actions **could not bypass the established safeguards**.
 
 **Tested:** 26 rule checks, plus 13 checks for Adrian's 3 tools (including an `audit_check` that catches a tampered balance and a payment approved by "Boss"), on a throwaway copy of the database all passed (for example: a purchase order refused while #501 is open, "Boss" can't approve, an approved payment updates all four tables, and a $264 order refused with $160 left).
 
@@ -521,7 +523,7 @@ Every agent tool is an MCP tool on `campus-customs` (`mcp_server/server.py`, dat
 
 **Human-only MCP server** `campus-customs-human` (8 tools; the dashboard is its only client, and no agent or vibe coder can see it): `approve_request`, `reject_request`, `resume_team`, `receive_purchase_order`, `approve_draft`, `reject_draft`, `record_customer_reply`, `approve_template`.
 
-🛑 **Adrian:**
+🛑 **Adrian:** **Human-only tools** create an additional layer of oversight by **separating agent responsibilities from approval authority**. This helps enforce accountability and reduces the risk of unauthorized actions.
 
 ---
 
@@ -606,7 +608,7 @@ The shop is a **simulation**: nothing real is bought, paid, shipped or sent. The
 | **Limits and a stop switch** | Code | 6 delegations and 60 model calls per ticket, 90-second call timeout, no ping-pong, no negative cash, and `halt_team` (only a human resumes). |
 | **Everything is recorded** | Code | Every agent-loop step is appended to `output/audit_trail.json` (never wiped), and `audit_check` proves no money moved without a human. |
 
-🛑 **Adrian:**
+🛑 **Adrian:** **Safety controls** are designed to keep the simulation operating **within the defined business rules**. The goal is to prevent agents from performing actions outside their responsibilities while **maintaining oversight of sensitive processes**.
 
 🛑 **Adrian:** These limits are built so that we don’t get into cycles or process that make it so the agents do things or spend/ pay when we don’t have money or send emails to unfiltered customers/ spam.
 

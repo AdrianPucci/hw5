@@ -314,8 +314,7 @@ async def reset() -> dict[str, Any]:
     reset_database()
     # Remember when this fresh start happened, so reports (scripts/resolved_report.py) only count runs after it.
     (audit_trail.AUDIT_PATH.parent / "last_reset.json").write_text(
-        json.dumps({"reset_at": datetime.now().isoformat(timespec="seconds")}) + "
-", encoding="utf-8")
+        json.dumps({"reset_at": datetime.now().isoformat(timespec="seconds")}) + "\n", encoding="utf-8")
     open_tickets = [t["id"] for t in await mcp_call("list_tickets") if t["status"] != "resolved"]
     return {"ok": True, "cash": (await mcp_call("get_cash_balance"))["balance"], "open_tickets": open_tickets,
             "team_halted": (await mcp_call("get_team_status")).get("halted", False)}
